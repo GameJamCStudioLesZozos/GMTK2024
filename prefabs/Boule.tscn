@@ -23,5 +23,7 @@ physics_interpolation_mode = 1
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_s1t4r")
 
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
 [connection signal="body_exited" from="." to="." method="_OnBodyExited"]
