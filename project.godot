@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 project/assembly_name="GMTK2024"
 
+[global_group]
+
+Player=""
+Ground=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
