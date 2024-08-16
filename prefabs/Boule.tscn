@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://8ifnct3byuxj"]
+
+[ext_resource type="Script" path="res://scripts/RigidBody2dAutoScale.cs" id="1_6sdjc"]
+[ext_resource type="Texture2D" uid="uid://bsji5e8gqmsu1" path="res://icon.svg" id="2_s1t4r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["Player"]]
+position = Vector2(60, 60)
+collision_mask = 2
+contact_monitor = true
+max_contacts_reported = 20
+constant_force = Vector2(0, -10)
+script = ExtResource("1_6sdjc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_heevr")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Node" type="Sprite2D" parent="Node2D"]
+physics_interpolation_mode = 1
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_s1t4r")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="_OnBodyExited"]

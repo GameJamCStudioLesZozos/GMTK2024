@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://wfglofvnfn8q"]
+
+[ext_resource type="Script" path="res://scripts/CollisionShape2dAutoFill.cs" id="1_bpbjn"]
+
+[node name="Polygon2D" type="Polygon2D"]
+physics_interpolation_mode = 1
+polygon = PackedVector2Array(0, 300, 1150, 500, 1150, 650, 0, 650)
+
+[node name="RigidBody2D" type="StaticBody2D" parent="." groups=["Ground"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+script = ExtResource("1_bpbjn")
