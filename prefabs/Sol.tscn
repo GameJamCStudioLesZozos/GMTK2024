@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/CollisionShape2dAutoFill.cs" id="1_bpbjn"]
 
-[node name="Polygon2D" type="StaticBody2D" groups=["Ground"]]
+[node name="Ground" type="StaticBody2D" groups=["Ground"]]
 physics_interpolation_mode = 1
 collision_layer = 2
 
