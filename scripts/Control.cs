@@ -6,7 +6,8 @@ using System.Net.Http.Headers;
 public partial class Control : Godot.Control
 {
 
-	Stopwatch stopwatch;
+	private Stopwatch stopwatch;
+	private SignalBus signalBus;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -15,15 +16,17 @@ public partial class Control : Godot.Control
 		stopwatch.Start();
 
 		GetNode<ColorRect>("Deathscreen").Hide();
-		
-	}
+
+		signalBus = GetNode<SignalBus>("/root/SignalBus");
+		signalBus.Connect(SignalBus.SignalName.PlayerDied, Callable.From(OnPlayerDead));
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 	}
 
-	public void _on_player_dead()
+	public void OnPlayerDead()
 	{
 		stopwatch.Stop();
 
@@ -33,11 +36,12 @@ public partial class Control : Godot.Control
 		Debug.WriteLine(strTime);
 		time.Text += strTime;
 
-		GetNode<ColorRect>("Deathscreen").Show();
+        GetTree().Paused = true;
+        GetNode<ColorRect>("Deathscreen").Show();
 	}
 	
 
-	public void _on_retry_pressed()
+	public void OnRetryPressed()
 	{
 		GetTree().ReloadCurrentScene();
 	}

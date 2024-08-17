@@ -11,8 +11,10 @@ public partial class ScalingComponent : Node
 	[Export]
 	public float Size { get; set; } = 1;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public bool IsGameOver => Size <= 0;
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		ScaleChildren();
 		EmitSignal(SignalName.Scaled, Size);
@@ -32,7 +34,17 @@ public partial class ScalingComponent : Node
 
 	public void ScaleSize(float amount)
 	{
+		if (IsGameOver)
+			return;
+
 		Size += amount;
+		if (IsGameOver)
+		{
+			Size = 0;
+			EmitSignal(SignalBus.SignalName.PlayerDied);
+			return;
+		}
+
 		EmitSignal(SignalName.Scaled, Size);
 	}
 

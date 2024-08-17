@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://5ktfr20futg5"]
+[gd_scene load_steps=5 format=3 uid="uid://5ktfr20futg5"]
 
 [ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/Boule.tscn" id="1_ejra5"]
 [ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Sol.tscn" id="2_gp7xk"]
 [ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Tree.tscn" id="3_g8ss2"]
+[ext_resource type="PackedScene" uid="uid://bwexcskfbudn" path="res://prefabs/Control.tscn" id="4_kqmg8"]
 
 [node name="Node2D2" type="Node2D"]
 
@@ -13,3 +14,7 @@
 [node name="Tree" parent="." instance=ExtResource("3_g8ss2")]
 position = Vector2(832, 321)
 rotation = 0.174533
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("4_kqmg8")]
