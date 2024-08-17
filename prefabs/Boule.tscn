@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://8ifnct3byuxj"]
+[gd_scene load_steps=7 format=3 uid="uid://8ifnct3byuxj"]
 
 [ext_resource type="Script" path="res://scripts/RigidBody2dAutoScale.cs" id="1_6sdjc"]
+[ext_resource type="Script" path="res://scripts/RigidBodyController.cs" id="1_ulrvc"]
 [ext_resource type="Texture2D" uid="uid://bsji5e8gqmsu1" path="res://icon.svg" id="2_s1t4r"]
 [ext_resource type="Script" path="res://scripts/BouleSnowCollision.cs" id="3_0uxef"]
+[ext_resource type="Script" path="res://scripts/MovementComponent.cs" id="5_mjtwt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
 
@@ -12,6 +14,7 @@ collision_mask = 2
 contact_monitor = true
 max_contacts_reported = 20
 constant_force = Vector2(0, -10)
+script = ExtResource("1_ulrvc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_heevr")
@@ -33,6 +36,12 @@ script = ExtResource("3_0uxef")
 
 [node name="ObstacleCollisionComponent" type="Node" parent="."]
 
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("5_mjtwt")
+
 [connection signal="body_entered" from="." to="SnowCollisionComponent" method="_OnBodyEntered"]
+[connection signal="body_entered" from="." to="MovementComponent" method="_OnBodyEntered"]
 [connection signal="body_exited" from="." to="SnowCollisionComponent" method="_OnBodyExited"]
+[connection signal="body_exited" from="." to="MovementComponent" method="_OnBodyExited"]
 [connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]
+[connection signal="Jumped" from="MovementComponent" to="." method="apply_central_impulse"]
