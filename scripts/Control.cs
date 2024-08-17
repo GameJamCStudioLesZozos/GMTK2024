@@ -36,14 +36,13 @@ public partial class Control : Godot.Control
 		Debug.WriteLine(strTime);
 		time.Text += strTime;
 
-        GetTree().Paused = true;
         GetNode<ColorRect>("Deathscreen").Show();
 	}
 	
 
 	public void OnRetryPressed()
 	{
-		GetTree().ReloadCurrentScene();
+        GetTree().ReloadCurrentScene();
 	}
 
 }

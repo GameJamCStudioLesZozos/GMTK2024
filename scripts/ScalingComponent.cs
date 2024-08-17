@@ -41,7 +41,11 @@ public partial class ScalingComponent : Node
 		if (IsGameOver)
 		{
 			Size = 0;
-			EmitSignal(SignalBus.SignalName.PlayerDied);
+            SignalBus signalBus = GetNode<SignalBus>("/root/SignalBus");
+            signalBus.EmitSignal(SignalBus.SignalName.PlayerDied);
+
+			GetParent<Node2D>().Visible = false;
+			GetParent().ProcessMode = ProcessModeEnum.Disabled;
 			return;
 		}
 

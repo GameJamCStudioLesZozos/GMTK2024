@@ -50,4 +50,4 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Your time was "
 
-[connection signal="pressed" from="Deathscreen/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Deathscreen/Retry" to="." method="OnRetryPressed"]
