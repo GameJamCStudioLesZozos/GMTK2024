@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://8ifnct3byuxj"]
+[gd_scene load_steps=7 format=3 uid="uid://8ifnct3byuxj"]
 
 [ext_resource type="Script" path="res://scripts/RigidBody2dAutoScale.cs" id="1_6sdjc"]
 [ext_resource type="Texture2D" uid="uid://bsji5e8gqmsu1" path="res://icon.svg" id="2_s1t4r"]
 [ext_resource type="Script" path="res://scripts/BouleSnowCollision.cs" id="3_0uxef"]
+[ext_resource type="Script" path="res://scripts/CameraAutoScale.cs" id="5_h7spy"]
 [ext_resource type="Script" path="res://scripts/MovementComponent.cs" id="5_mjtwt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
@@ -34,11 +35,14 @@ script = ExtResource("3_0uxef")
 script = ExtResource("5_mjtwt")
 
 [node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("5_h7spy")
+CameraBaseZoom = 3.0
 
 [connection signal="body_entered" from="." to="SnowCollisionComponent" method="_OnBodyEntered"]
 [connection signal="body_entered" from="." to="MovementComponent" method="_OnBodyEntered"]
 [connection signal="body_exited" from="." to="SnowCollisionComponent" method="_OnBodyExited"]
 [connection signal="body_exited" from="." to="MovementComponent" method="_OnBodyExited"]
+[connection signal="Scaled" from="ScalingComponent" to="Camera" method="HandleNewScaling"]
 [connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]
 [connection signal="ForceGravity" from="MovementComponent" to="." method="set_gravity_scale"]
 [connection signal="Jumped" from="MovementComponent" to="." method="apply_central_impulse"]

@@ -5,6 +5,9 @@ using System.Diagnostics;
 
 public partial class RigidBody2dAutoScale : Node
 {
+	[Signal]
+	public delegate void ScaledEventHandler(float newScale);
+
     [Export]
     public float Size { get; set; } = 1;
 
@@ -12,6 +15,7 @@ public partial class RigidBody2dAutoScale : Node
     public override void _Ready()
 	{
 		ScaleChildren();
+		EmitSignal(SignalName.Scaled, Size);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,6 +33,7 @@ public partial class RigidBody2dAutoScale : Node
 	public void ScaleSize(float amount)
 	{
 		Size += amount;
+		EmitSignal(SignalName.Scaled, Size);
 	}
 
 	private void ScaleChildren()
