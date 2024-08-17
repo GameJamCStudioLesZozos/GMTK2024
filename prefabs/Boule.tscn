@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://8ifnct3byuxj"]
 
-[ext_resource type="Script" path="res://scripts/RigidBody2dAutoScale.cs" id="1_6sdjc"]
+[ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="1_6sdjc"]
 [ext_resource type="Texture2D" uid="uid://bsji5e8gqmsu1" path="res://icon.svg" id="2_s1t4r"]
 [ext_resource type="Script" path="res://scripts/BouleSnowCollision.cs" id="3_0uxef"]
 [ext_resource type="Script" path="res://scripts/CameraAutoScale.cs" id="5_h7spy"]

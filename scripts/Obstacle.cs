@@ -13,7 +13,7 @@ public partial class Obstacle : Area2D
     {
         if (node.IsInGroup("Player"))
         {
-            RigidBody2dAutoScale playerScalingComponent = node.GetNode<RigidBody2dAutoScale>("ScalingComponent");
+            ScalingComponent playerScalingComponent = node.GetNode<ScalingComponent>("ScalingComponent");
             if (playerScalingComponent == null)
                 return;
 

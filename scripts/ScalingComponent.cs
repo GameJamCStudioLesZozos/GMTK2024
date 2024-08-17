@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-public partial class RigidBody2dAutoScale : Node
+public partial class ScalingComponent : Node
 {
 	[Signal]
 	public delegate void ScaledEventHandler(float newScale);
 
-    [Export]
-    public float Size { get; set; } = 1;
+	[Export]
+	public float Size { get; set; } = 1;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
 	{
 		ScaleChildren();
 		EmitSignal(SignalName.Scaled, Size);
@@ -40,7 +40,7 @@ public partial class RigidBody2dAutoScale : Node
 	{
 		foreach (Node child in GetParent().GetChildren())
 		{
-			if(child is Node2D child2D)
+			if (child is Node2D child2D)
 				child2D.Scale = new Vector2(Size, Size);
 		}
 	}
