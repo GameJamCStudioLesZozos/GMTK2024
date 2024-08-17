@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class RigidBody2dAutoScale : RigidBody2D
 {
@@ -8,7 +9,10 @@ public partial class RigidBody2dAutoScale : RigidBody2D
 	public float Size { get; set; } = 1;
 
 	[Export]
-	public float SizeScaling { get; set; } = 0.01f;
+	public float SizeScaling { get; set; } = 1f;
+
+	[Export]
+	public float JumpImpulse { get; set; } = 100f;
 
 	private List<Node> collisions = new();
 
@@ -22,9 +26,11 @@ public partial class RigidBody2dAutoScale : RigidBody2D
 	public override void _Process(double delta)
 	{
 		if (collisions.Count != 0)
-			Size += SizeScaling;
+			Size += SizeScaling * (float)delta;
 
 		scaleChildren();
+
+		jump();
 	}
 
 	public void _OnBodyEntered(Node node)
@@ -43,6 +49,14 @@ public partial class RigidBody2dAutoScale : RigidBody2D
 		foreach (Node2D child in GetChildren())
 		{
 			child.Scale = new Vector2(Size, Size);
+		}
+	}
+
+	private void jump()
+	{
+		if(Input.IsActionPressed("jump") && collisions.Count != 0)
+		{
+			ApplyImpulse(new Vector2(0f, -JumpImpulse));
 		}
 	}
 }
