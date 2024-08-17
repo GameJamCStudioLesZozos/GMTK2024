@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 public partial class MovementComponent : Node
 {
@@ -10,7 +11,7 @@ public partial class MovementComponent : Node
 
 	[Signal]
 	public delegate void JumpedEventHandler(Vector2 impulse);
-	
+
 	[Export]
 	public float GravityMultiplier { get; set; } = 10f;
 
@@ -22,26 +23,25 @@ public partial class MovementComponent : Node
 	public float SpeedMultiplier { get; set; } = 1.4f;
 	private Vector2 appliedSpeedUp;
 
-
-
 	private List<Node> groundCollisions = new();
 	private RigidBody2D rb;
+	private ScalingComponent scalingComponent;
+
+	public override void _Ready()
+	{
+		rb = GetParent<RigidBody2D>();
+		scalingComponent = (ScalingComponent)rb.GetChildren().First(node => node is ScalingComponent);
+	}
 
 
-    public override void _Ready()
-    {
-        rb = GetParent<RigidBody2D>();
-    }
-
-
-    public override void _PhysicsProcess(double delta)
-    {
-        checkJump();
+	public override void _PhysicsProcess(double delta)
+	{
+		checkJump();
 		checkForceGravity();
-    }
+	}
 
 
-    public void _OnBodyEntered(Node node)
+	public void _OnBodyEntered(Node node)
 	{
 		if (node.IsInGroup("Snow"))
 			groundCollisions.Add(node);
@@ -56,7 +56,7 @@ public partial class MovementComponent : Node
 	{
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
-			EmitSignal(SignalName.Jumped, new Vector2(0f, -JumpImpulse));
+			EmitSignal(SignalName.Jumped, new Vector2(0f, -JumpImpulse * (float)Math.Sqrt(scalingComponent.Size)));
 		}
 	}
 
@@ -81,7 +81,7 @@ public partial class MovementComponent : Node
 
 	private void checkForceGravity()
 	{
-		if(IsOnFloor())
+		if (IsOnFloor())
 		{
 			speedForward();
 		}
@@ -91,7 +91,8 @@ public partial class MovementComponent : Node
 		}
 	}
 
-	private bool IsOnFloor(){
+	private bool IsOnFloor()
+	{
 		return groundCollisions.Count != 0;
 	}
 }
