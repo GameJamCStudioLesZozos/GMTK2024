@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://8ifnct3byuxj"]
+[gd_scene load_steps=11 format=3 uid="uid://8ifnct3byuxj"]
 
 [ext_resource type="Texture2D" uid="uid://dtjolwwa8wa8r" path="res://Sprites/snowball_happy.png" id="1_0x708"]
 [ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="1_6sdjc"]
+[ext_resource type="Script" path="res://scripts/CharacterSpriteController.cs" id="1_rg8wy"]
 [ext_resource type="Script" path="res://scripts/BouleSnowCollision.cs" id="3_0uxef"]
+[ext_resource type="Texture2D" uid="uid://chkk8crdn70ix" path="res://Sprites/snowball_surprised.png" id="3_72sdh"]
+[ext_resource type="Texture2D" uid="uid://dju8fpsqsadob" path="res://Sprites/snowball_concerned.png" id="4_23svx"]
 [ext_resource type="Script" path="res://scripts/CameraAutoScale.cs" id="5_h7spy"]
+[ext_resource type="Texture2D" uid="uid://dyh63723p4ikn" path="res://Sprites/snowball_ill.png" id="5_lxmun"]
 [ext_resource type="Script" path="res://scripts/MovementComponent.cs" id="5_mjtwt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
@@ -19,6 +23,14 @@ constant_force = Vector2(0, -10)
 shape = SubResource("CircleShape2D_heevr")
 
 [node name="Character" type="Node2D" parent="."]
+script = ExtResource("1_rg8wy")
+happy = ExtResource("1_0x708")
+surprised = ExtResource("3_72sdh")
+concerned = ExtResource("4_23svx")
+ill = ExtResource("5_lxmun")
+surprisedTreshold = 1.0
+concernedTreshold = 2.0
+illTreshold = 3.0
 
 [node name="Node" type="Sprite2D" parent="Character"]
 physics_interpolation_mode = 1
