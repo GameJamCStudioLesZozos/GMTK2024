@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://5ktfr20futg5"]
 
-[ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/Boule.tscn" id="1_ejra5"]
-[ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Sol.tscn" id="2_gp7xk"]
+[ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/SnowBall.tscn" id="1_ejra5"]
+[ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Snow.tscn" id="2_gp7xk"]
 [ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Tree.tscn" id="3_g8ss2"]
 [ext_resource type="PackedScene" uid="uid://bwexcskfbudn" path="res://prefabs/Control.tscn" id="4_kqmg8"]
 

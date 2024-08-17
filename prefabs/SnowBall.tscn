@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dtjolwwa8wa8r" path="res://Sprites/snowball_happy.png" id="1_0x708"]
 [ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="1_6sdjc"]
 [ext_resource type="Script" path="res://scripts/CharacterSpriteController.cs" id="1_rg8wy"]
-[ext_resource type="Script" path="res://scripts/BouleSnowCollision.cs" id="3_0uxef"]
+[ext_resource type="Script" path="res://scripts/BallSnowCollision.cs" id="3_0uxef"]
 [ext_resource type="Texture2D" uid="uid://chkk8crdn70ix" path="res://Sprites/snowball_surprised.png" id="3_72sdh"]
 [ext_resource type="Texture2D" uid="uid://dju8fpsqsadob" path="res://Sprites/snowball_concerned.png" id="4_23svx"]
 [ext_resource type="Script" path="res://scripts/CameraAutoScale.cs" id="5_h7spy"]
@@ -12,7 +12,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
 
-[node name="RigidBody2D" type="RigidBody2D" groups=["Player"]]
+[node name="SnowBall" type="RigidBody2D" groups=["Player"]]
 position = Vector2(60, 60)
 collision_mask = 6
 contact_monitor = true

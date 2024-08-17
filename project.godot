@@ -26,8 +26,9 @@ project/assembly_name="GMTK2024"
 [global_group]
 
 Player=""
-Ground=""
 Obstacle=""
+Snow=""
+Ground=""
 
 [input]
 
