@@ -40,4 +40,5 @@ script = ExtResource("5_mjtwt")
 [connection signal="body_exited" from="." to="SnowCollisionComponent" method="_OnBodyExited"]
 [connection signal="body_exited" from="." to="MovementComponent" method="_OnBodyExited"]
 [connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]
+[connection signal="ForceGravity" from="MovementComponent" to="." method="set_gravity_scale"]
 [connection signal="Jumped" from="MovementComponent" to="." method="apply_central_impulse"]
