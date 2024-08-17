@@ -17,14 +17,14 @@ constant_force = Vector2(0, -10)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_heevr")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Character" type="Node2D" parent="."]
 
-[node name="Node" type="Sprite2D" parent="Node2D"]
+[node name="Node" type="Sprite2D" parent="Character"]
 physics_interpolation_mode = 1
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_s1t4r")
 
-[node name="Camera2D" type="Camera2D" parent="Node2D"]
+[node name="Camera" type="Camera2D" parent="Character"]
 
 [node name="ScalingComponent" type="Node" parent="."]
 script = ExtResource("1_6sdjc")

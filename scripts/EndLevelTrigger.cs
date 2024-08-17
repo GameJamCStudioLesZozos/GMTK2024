@@ -7,7 +7,7 @@ public partial class EndLevelTrigger : Area2D
     {
         if (node.IsInGroup("Player"))
         {
-            node.GetChild(-1).GetChild(-1).Reparent(this);
+            node.GetNode("Camera").Reparent(this);
         }
     }
 }
