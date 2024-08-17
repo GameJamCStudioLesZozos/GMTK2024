@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://5ktfr20futg5"]
+[gd_scene load_steps=4 format=3 uid="uid://5ktfr20futg5"]
 
 [ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/Boule.tscn" id="1_ejra5"]
 [ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Sol.tscn" id="2_gp7xk"]
+[ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Tree.tscn" id="3_g8ss2"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="RigidBody2D" parent="." instance=ExtResource("1_ejra5")]
+collision_mask = 6
 
 [node name="Polygon2D" parent="." instance=ExtResource("2_gp7xk")]
+
+[node name="Tree" parent="." instance=ExtResource("3_g8ss2")]
+position = Vector2(832, 321)
+rotation = 0.174533

@@ -23,6 +23,7 @@ project/assembly_name="GMTK2024"
 
 Player=""
 Ground=""
+Obstacle=""
 
 [rendering]
 
