@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8i2t0awk71p7"]
+[gd_scene load_steps=4 format=3 uid="uid://c8i2t0awk71p7"]
 
 [ext_resource type="Texture2D" uid="uid://bhoc3okhrkgrh" path="res://tree1_big_dark.png" id="1_5kfnw"]
+[ext_resource type="Script" path="res://scripts/Obstacle.cs" id="1_347yx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1hwq"]
 radius = 142.55
@@ -9,6 +10,7 @@ height = 481.31
 [node name="Tree" type="StaticBody2D" groups=["Obstacle"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
+script = ExtResource("1_347yx")
 
 [node name="StaticBody2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_5kfnw")
