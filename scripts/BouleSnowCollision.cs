@@ -8,14 +8,14 @@ public partial class BouleSnowCollision : Node
     public delegate void ScaleRigidBodyEventHandler(float amount);
 
     [Export]
-    public float SizeScaling { get; set; } = 0.01f;
+    public float SizeScaling { get; set; } = 1f;
 
     private List<Node> groundCollisions = new();
 
     public override void _Process(double delta)
     {
         if (groundCollisions.Count != 0)
-            EmitSignal(SignalName.ScaleRigidBody, SizeScaling);
+            EmitSignal(SignalName.ScaleRigidBody, SizeScaling * (float)delta);
     }
 
     public void _OnBodyEntered(Node node)
