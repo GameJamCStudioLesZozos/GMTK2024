@@ -11,7 +11,8 @@ height = 481.31
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 script = ExtResource("1_347yx")
-RequiredStrength = 2000.0
+RequiredStrength = 100.0
+DamageDealt = 3.0
 
 [node name="TreeSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -250)
