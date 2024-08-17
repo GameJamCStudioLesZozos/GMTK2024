@@ -1,12 +1,41 @@
 using Godot;
 using System;
 
-public partial class Obstacle : StaticBody2D
+public partial class Obstacle : Area2D
 {
     [Export]
-    public float RequiredPower { get; set; } = 10;
+    public float RequiredStrength { get; set; } = 10;
 
-	// Todo shake on weak colision
+    [Export]
+    public float DamageDealt { get; set; } = 0.5f;
 
-	// Todo delete on strong enought colision
+    public void _OnBodyEntered(Node2D node)
+    {
+        if (node.IsInGroup("Player"))
+        {
+            RigidBody2dAutoScale playerScalingComponent = node.GetNode<RigidBody2dAutoScale>("ScalingComponent");
+            if (playerScalingComponent == null)
+                return;
+
+            if (playerScalingComponent.GetStrength() < RequiredStrength)
+            {
+                playerScalingComponent.ScaleSize(-DamageDealt);
+                Shake();
+            }
+            else
+            {
+                DeleteObstacle();
+            }
+        }
+    }
+
+    public void Shake()
+    {
+        // Todo
+    }
+
+    public void DeleteObstacle()
+    {
+        QueueFree();
+    }
 }

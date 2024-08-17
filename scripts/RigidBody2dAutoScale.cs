@@ -20,6 +20,12 @@ public partial class RigidBody2dAutoScale : Node
 		ScaleChildren();
 	}
 
+	public float GetStrength()
+	{
+		// TODO update with what need
+		return Size * 10;
+	}
+
 	public void ScaleSize(float amount)
 	{
 		Size += amount;

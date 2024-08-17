@@ -7,14 +7,17 @@
 radius = 142.55
 height = 481.31
 
-[node name="Tree" type="StaticBody2D" groups=["Obstacle"]]
+[node name="Tree" type="Area2D" groups=["Obstacle"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 script = ExtResource("1_347yx")
+RequiredStrength = 2000.0
 
-[node name="StaticBody2D" type="Sprite2D" parent="."]
+[node name="TreeSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_5kfnw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -0.5)
 shape = SubResource("CapsuleShape2D_x1hwq")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
