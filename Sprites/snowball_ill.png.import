@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhoc3okhrkgrh"
-path="res://.godot/imported/tree1_big_dark.png-ea81b006dfb95b942bd783c175ac62b7.ctex"
+uid="uid://dyh63723p4ikn"
+path="res://.godot/imported/snowball_ill.png-0d5eb791751e1cabb46f21830988bdce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tree1_big_dark.png"
-dest_files=["res://.godot/imported/tree1_big_dark.png-ea81b006dfb95b942bd783c175ac62b7.ctex"]
+source_file="res://Sprites/snowball_ill.png"
+dest_files=["res://.godot/imported/snowball_ill.png-0d5eb791751e1cabb46f21830988bdce.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
