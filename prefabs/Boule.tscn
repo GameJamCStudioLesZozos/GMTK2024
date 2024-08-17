@@ -24,8 +24,6 @@ physics_interpolation_mode = 1
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_s1t4r")
 
-[node name="Camera" type="Camera2D" parent="Character"]
-
 [node name="ScalingComponent" type="Node" parent="."]
 script = ExtResource("1_6sdjc")
 
@@ -36,6 +34,8 @@ script = ExtResource("3_0uxef")
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("5_mjtwt")
+
+[node name="Camera" type="Camera2D" parent="."]
 
 [connection signal="body_entered" from="." to="SnowCollisionComponent" method="_OnBodyEntered"]
 [connection signal="body_entered" from="." to="MovementComponent" method="_OnBodyEntered"]
