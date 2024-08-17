@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://8ifnct3byuxj"]
 
+[ext_resource type="Texture2D" uid="uid://dtjolwwa8wa8r" path="res://Sprites/snowball_happy.png" id="1_0x708"]
 [ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="1_6sdjc"]
-[ext_resource type="Texture2D" uid="uid://bsji5e8gqmsu1" path="res://icon.svg" id="2_s1t4r"]
 [ext_resource type="Script" path="res://scripts/BouleSnowCollision.cs" id="3_0uxef"]
 [ext_resource type="Script" path="res://scripts/CameraAutoScale.cs" id="5_h7spy"]
 [ext_resource type="Script" path="res://scripts/MovementComponent.cs" id="5_mjtwt"]
@@ -22,8 +22,9 @@ shape = SubResource("CircleShape2D_heevr")
 
 [node name="Node" type="Sprite2D" parent="Character"]
 physics_interpolation_mode = 1
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_s1t4r")
+texture_filter = 3
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("1_0x708")
 
 [node name="ScalingComponent" type="Node" parent="."]
 script = ExtResource("1_6sdjc")

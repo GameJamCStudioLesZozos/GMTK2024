@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8i2t0awk71p7"]
 
-[ext_resource type="Texture2D" uid="uid://bhoc3okhrkgrh" path="res://tree1_big_dark.png" id="1_5kfnw"]
+[ext_resource type="Texture2D" uid="uid://bhoc3okhrkgrh" path="res://Sprites/tree1_big_dark.png" id="1_5kfnw"]
 [ext_resource type="Script" path="res://scripts/Obstacle.cs" id="1_347yx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1hwq"]
