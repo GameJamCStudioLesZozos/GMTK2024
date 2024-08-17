@@ -14,10 +14,11 @@ script = ExtResource("1_347yx")
 RequiredStrength = 2000.0
 
 [node name="TreeSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -250)
 texture = ExtResource("1_5kfnw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -0.5)
+position = Vector2(1, -250)
 shape = SubResource("CapsuleShape2D_x1hwq")
 
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

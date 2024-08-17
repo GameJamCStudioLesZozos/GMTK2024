@@ -11,4 +11,4 @@ script = ExtResource("1_bpbjn")
 
 [node name="GroundPolygon" type="Polygon2D" parent="."]
 unique_name_in_owner = true
-polygon = PackedVector2Array(0, 300, 1150, 500, 1150, 650, 0, 650)
+polygon = PackedVector2Array(0, 0, 1150, 200, 1150, 350, 0, 350)
