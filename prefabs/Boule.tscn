@@ -9,7 +9,7 @@
 
 [node name="RigidBody2D" type="RigidBody2D" groups=["Player"]]
 position = Vector2(60, 60)
-collision_mask = 2
+collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 20
 constant_force = Vector2(0, -10)

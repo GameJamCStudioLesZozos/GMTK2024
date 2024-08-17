@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Sol.tscn" id="2_gp7xk"]
 [ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Tree.tscn" id="3_g8ss2"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="RigidBody2D" parent="." instance=ExtResource("1_ejra5")]
 collision_mask = 6
+script = null
 
 [node name="Polygon2D" parent="." instance=ExtResource("2_gp7xk")]
 
