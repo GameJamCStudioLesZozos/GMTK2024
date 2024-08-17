@@ -18,19 +18,27 @@ public partial class MovementComponent : Node
 	[Signal]
 	public delegate void ForceGravityEventHandler(float multiplier);
 
+	[Export]
+	public float Torque { get; set; } = 10f;
+
+	[Signal]
+	public delegate void ApplyTorqueEventHandler(float torque);
 
 	[Export]
 	public float SpeedMultiplier { get; set; } = 1.4f;
 	private Vector2 appliedSpeedUp;
 
 	private List<Node> groundCollisions = new();
-	private RigidBody2D rb;
 	private ScalingComponent scalingComponent;
+
+	private Vector2 ScaledJumpVector => new(0f, -JumpImpulse * (float)Math.Sqrt(scalingComponent.Size));
+	private float ScaledTorque => Torque * scalingComponent.Size;
+	private bool IsOnFloor => groundCollisions.Count != 0;
+	private bool isGravityMultiplierOn = false;
 
 	public override void _Ready()
 	{
-		rb = GetParent<RigidBody2D>();
-		scalingComponent = (ScalingComponent)rb.GetChildren().First(node => node is ScalingComponent);
+		scalingComponent = (ScalingComponent)GetParent().GetChildren().First(node => node is ScalingComponent);
 	}
 
 
@@ -38,6 +46,7 @@ public partial class MovementComponent : Node
 	{
 		checkJump();
 		checkForceGravity();
+		checkRotation();
 	}
 
 
@@ -54,45 +63,31 @@ public partial class MovementComponent : Node
 
 	private void checkJump()
 	{
-		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		if (IsOnFloor && Input.IsActionJustPressed("jump"))
 		{
-			EmitSignal(SignalName.Jumped, new Vector2(0f, -JumpImpulse * (float)Math.Sqrt(scalingComponent.Size)));
+			EmitSignal(SignalName.Jumped, ScaledJumpVector);
 		}
 	}
 
-	private void speedForward()
+	private void checkRotation()
 	{
-		if (!Input.IsActionPressed("force_gravity"))
-			return;
-
-		appliedSpeedUp = rb.LinearVelocity * SpeedMultiplier;
-		rb.ApplyCentralForce(appliedSpeedUp);
-
-	}
-
-	private void setGravity()
-	{
-		float gravity_value = 1f;
-		if (Input.IsActionPressed("force_gravity"))
-			gravity_value = GravityMultiplier;
-
-		EmitSignal(SignalName.ForceGravity, gravity_value);
+		if (Input.IsActionPressed("right"))
+			EmitSignal(SignalName.ApplyTorque, ScaledTorque);
+		if (Input.IsActionPressed("left"))
+			EmitSignal(SignalName.ApplyTorque, -ScaledTorque);
 	}
 
 	private void checkForceGravity()
 	{
-		if (IsOnFloor())
+		if (!isGravityMultiplierOn && (!IsOnFloor && Input.IsActionJustPressed("force_gravity")))
 		{
-			speedForward();
+			isGravityMultiplierOn = true;
+			EmitSignal(SignalName.ForceGravity, GravityMultiplier);
 		}
-		else
+		if (isGravityMultiplierOn && (IsOnFloor || Input.IsActionJustReleased("force_gravity")))
 		{
-			setGravity();
+			isGravityMultiplierOn = false;
+			EmitSignal(SignalName.ForceGravity, 1f);
 		}
-	}
-
-	private bool IsOnFloor()
-	{
-		return groundCollisions.Count != 0;
 	}
 }

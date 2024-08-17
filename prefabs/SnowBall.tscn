@@ -46,6 +46,7 @@ script = ExtResource("3_0uxef")
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("5_mjtwt")
+Torque = 3000.0
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("5_h7spy")
@@ -57,5 +58,6 @@ CameraBaseZoom = 3.0
 [connection signal="body_exited" from="." to="MovementComponent" method="_OnBodyExited"]
 [connection signal="Scaled" from="ScalingComponent" to="Camera" method="HandleNewScaling"]
 [connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]
+[connection signal="ApplyTorque" from="MovementComponent" to="." method="apply_torque"]
 [connection signal="ForceGravity" from="MovementComponent" to="." method="set_gravity_scale"]
 [connection signal="Jumped" from="MovementComponent" to="." method="apply_central_impulse"]
