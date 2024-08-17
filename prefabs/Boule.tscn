@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://8ifnct3byuxj"]
+[gd_scene load_steps=6 format=3 uid="uid://8ifnct3byuxj"]
 
 [ext_resource type="Script" path="res://scripts/RigidBody2dAutoScale.cs" id="1_6sdjc"]
-[ext_resource type="Script" path="res://scripts/RigidBodyController.cs" id="1_ulrvc"]
 [ext_resource type="Texture2D" uid="uid://bsji5e8gqmsu1" path="res://icon.svg" id="2_s1t4r"]
 [ext_resource type="Script" path="res://scripts/BouleSnowCollision.cs" id="3_0uxef"]
 [ext_resource type="Script" path="res://scripts/MovementComponent.cs" id="5_mjtwt"]
@@ -14,7 +13,6 @@ collision_mask = 2
 contact_monitor = true
 max_contacts_reported = 20
 constant_force = Vector2(0, -10)
-script = ExtResource("1_ulrvc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_heevr")
