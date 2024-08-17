@@ -8,11 +8,6 @@ public partial class CameraAutoScale : Camera2D
 
 	private Vector2 CameraBaseZoomAsVec => new(CameraBaseZoom, CameraBaseZoom);
 
-	public override void _Ready()
-	{
-		Zoom = CameraBaseZoomAsVec;
-	}
-
 	public void HandleNewScaling(float newScaling)
 	{
 		Zoom = CameraBaseZoomAsVec / newScaling;
