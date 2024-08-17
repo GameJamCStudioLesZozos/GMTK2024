@@ -1,23 +1,21 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 
-public partial class BouleGroundCollision : RigidBody2D
+public partial class BouleSnowCollision : Node
 {
+    [Signal]
+    public delegate void ScaleRigidBodyEventHandler(float amount);
+
     [Export]
     public float SizeScaling { get; set; } = 0.01f;
 
     private List<Node> groundCollisions = new();
 
-    public override void _Ready()
-    {
-    }
-
     public override void _Process(double delta)
     {
-        //if (groundCollisions.Count != 0)
-            //Size += SizeScaling;
+        if (groundCollisions.Count != 0)
+            EmitSignal(SignalName.ScaleRigidBody, SizeScaling);
     }
 
     public void _OnBodyEntered(Node node)

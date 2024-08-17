@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://8ifnct3byuxj"]
+[gd_scene load_steps=5 format=3 uid="uid://8ifnct3byuxj"]
 
-[ext_resource type="Script" path="res://prefabs/BouleGroundColision.cs" id="1_lauov"]
+[ext_resource type="Script" path="res://scripts/RigidBody2dAutoScale.cs" id="1_6sdjc"]
 [ext_resource type="Texture2D" uid="uid://bsji5e8gqmsu1" path="res://icon.svg" id="2_s1t4r"]
+[ext_resource type="Script" path="res://scripts/BouleSnowCollision.cs" id="3_0uxef"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
 
@@ -11,7 +12,6 @@ collision_mask = 2
 contact_monitor = true
 max_contacts_reported = 20
 constant_force = Vector2(0, -10)
-script = ExtResource("1_lauov")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_heevr")
@@ -26,10 +26,13 @@ texture = ExtResource("2_s1t4r")
 [node name="Camera2D" type="Camera2D" parent="Node2D"]
 
 [node name="ScalingComponent" type="Node" parent="."]
+script = ExtResource("1_6sdjc")
 
-[node name="GroundCollisionComponent" type="Node" parent="."]
+[node name="SnowCollisionComponent" type="Node" parent="."]
+script = ExtResource("3_0uxef")
 
 [node name="ObstacleCollisionComponent" type="Node" parent="."]
 
-[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
-[connection signal="body_exited" from="." to="." method="_OnBodyExited"]
+[connection signal="body_entered" from="." to="SnowCollisionComponent" method="_OnBodyEntered"]
+[connection signal="body_exited" from="." to="SnowCollisionComponent" method="_OnBodyExited"]
+[connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-public partial class RigidBody2dAutoScale : RigidBody2D
+public partial class RigidBody2dAutoScale : Node
 {
     [Export]
     public float Size { get; set; } = 1;
@@ -11,20 +11,26 @@ public partial class RigidBody2dAutoScale : RigidBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		scaleChildren();
+		ScaleChildren();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		scaleChildren();
+		ScaleChildren();
 	}
 
-	private void scaleChildren()
+	public void ScaleSize(float amount)
 	{
-		foreach (Node2D child in GetChildren())
+		Size += amount;
+	}
+
+	private void ScaleChildren()
+	{
+		foreach (Node child in GetParent().GetChildren())
 		{
-			child.Scale = new Vector2(Size, Size);
+			if(child is Node2D child2D)
+				child2D.Scale = new Vector2(Size, Size);
 		}
 	}
 }
