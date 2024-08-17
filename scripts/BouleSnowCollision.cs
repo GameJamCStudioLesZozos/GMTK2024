@@ -12,7 +12,7 @@ public partial class BouleSnowCollision : Node
 
     private List<Node> groundCollisions = new();
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (groundCollisions.Count != 0)
             EmitSignal(SignalName.ScaleRigidBody, SizeScaling * (float)delta);
