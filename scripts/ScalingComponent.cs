@@ -49,7 +49,8 @@ public partial class ScalingComponent : Node
 
 		IsInvincible = true;
 		InvincibilityTimer.Start(InvincibilityDuration);
-		ScaleSize(-amout);
+        SignalBus.Instance.EmitSignal(SignalBus.SignalName.PlayerStartInvincibility, InvincibilityDuration);
+        ScaleSize(-amout);
 	}
 
 	public void ScaleSize(float amount)
