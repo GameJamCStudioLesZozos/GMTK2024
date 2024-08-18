@@ -7,7 +7,6 @@ public partial class Control : Godot.Control
 {
 
 	private Stopwatch stopwatch;
-	private SignalBus signalBus;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -17,8 +16,7 @@ public partial class Control : Godot.Control
 
 		GetNode<ColorRect>("Deathscreen").Hide();
 
-		signalBus = GetNode<SignalBus>("/root/SignalBus");
-		signalBus.Connect(SignalBus.SignalName.PlayerDied, Callable.From(OnPlayerDead));
+		SignalBus.Instance.Connect(SignalBus.SignalName.PlayerDied, Callable.From(OnPlayerDead));
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
