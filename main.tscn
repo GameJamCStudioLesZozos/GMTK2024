@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://5ktfr20futg5"]
+[gd_scene load_steps=7 format=3 uid="uid://5ktfr20futg5"]
 
 [ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/SnowBall.tscn" id="1_ejra5"]
 [ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Snow.tscn" id="2_gp7xk"]
 [ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Tree.tscn" id="3_g8ss2"]
 [ext_resource type="PackedScene" uid="uid://bwexcskfbudn" path="res://prefabs/Control.tscn" id="4_kqmg8"]
+
+[sub_resource type="Gradient" id="Gradient_57df1"]
+colors = PackedColorArray(0.278973, 0.544391, 0.884461, 1, 0.7, 0.91, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d8tl4"]
+gradient = SubResource("Gradient_57df1")
 
 [node name="Node2D2" type="Node2D"]
 
@@ -11,11 +17,18 @@
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("4_kqmg8")]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3000, 1000)
+rotation = 1.5708
+texture = SubResource("GradientTexture1D_d8tl4")
+region_enabled = true
+region_rect = Rect2(0, 0, 2000, 6000)
+
 [node name="RigidBody2D" parent="." instance=ExtResource("1_ejra5")]
 
 [node name="Polygon2D" parent="." instance=ExtResource("2_gp7xk")]
 position = Vector2(0, 300)
-scale = Vector2(5, 5)
+scale = Vector2(5.215, 5.215)
 
 [node name="Tree" parent="." instance=ExtResource("3_g8ss2")]
 position = Vector2(3573, 925)
