@@ -1,20 +1,19 @@
 using Godot;
 using System;
-using System.Diagnostics;
-using System.Net.Http.Headers;
 
-public partial class Control : Godot.Control
+public partial class DeathscreenUI : Control
 {
 
-	private Stopwatch stopwatch;
+	private ColorRect deathScreen;
+	private Main main;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		stopwatch = new Stopwatch();
-		stopwatch.Start();
+		deathScreen = GetNode<ColorRect>("Deathscreen");
+		deathScreen.Hide();
 
-		GetNode<ColorRect>("Deathscreen").Hide();
+		main = GetTree().Root.GetNode<Main>("Main");
 
 		SignalBus.Instance.Connect(SignalBus.SignalName.PlayerDied, Callable.From(OnPlayerDead));
     }
@@ -26,15 +25,12 @@ public partial class Control : Godot.Control
 
 	public void OnPlayerDead()
 	{
-		stopwatch.Stop();
+		Label time = deathScreen.GetNode<Label>("Time");
 
-		Label time = GetNode<Label>("Deathscreen/Time");
-
-		string strTime = stopwatch.Elapsed.ToString();
-		Debug.WriteLine(strTime);
+		string strTime = GetTime();
 		time.Text += strTime;
 
-        GetNode<ColorRect>("Deathscreen").Show();
+        deathScreen.Show();
 	}
 	
 
@@ -43,4 +39,10 @@ public partial class Control : Godot.Control
         GetTree().ReloadCurrentScene();
 	}
 
+
+	private string GetTime()
+	{
+		TimeSpan timeSpan = main.GetTime();
+		return string.Format("{1:s\\.fff}", "s\\.fff", timeSpan);
+	}
 }

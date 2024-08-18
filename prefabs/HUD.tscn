@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc2j5qdj5g4mp"]
+
+[ext_resource type="Script" path="res://scripts/HUD.cs" id="1_jn1pf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cblol"]
+font_size = 25
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pibyw"]
+font_size = 25
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0n6pf"]
+font_size = 25
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jn1pf")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Speed" type="Label" parent="ReferenceRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -84.0
+offset_right = -12.0
+offset_bottom = -49.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Speed: "
+label_settings = SubResource("LabelSettings_cblol")
+vertical_alignment = 1
+
+[node name="Size" type="Label" parent="ReferenceRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -56.0
+offset_right = -13.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.996007, 1)
+text = "Size: "
+label_settings = SubResource("LabelSettings_pibyw")
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="ReferenceRect"]
+layout_mode = 1
+offset_left = 55.0
+offset_top = 48.0
+offset_right = 128.0
+offset_bottom = 83.0
+text = "Time: "
+label_settings = SubResource("LabelSettings_0n6pf")
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="ReferenceRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0

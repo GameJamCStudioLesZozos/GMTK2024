@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwexcskfbudn"]
 
-[ext_resource type="Script" path="res://scripts/Control.cs" id="1_8m3b5"]
+[ext_resource type="Script" path="res://scripts/DeathscreenUI.cs" id="1_8m3b5"]
 
-[node name="Control" type="Control"]
+[node name="DeathscreenUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
