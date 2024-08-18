@@ -25,6 +25,21 @@ public partial class MovementComponent : Node
 	public delegate void ApplyTorqueEventHandler(float torque);
 
 	[Export]
+	public float DashRotation { get; set; } = 30f;
+
+	[Signal]
+	public delegate void ApplyDashRotationEventHandler(float dashRotation);
+
+	[Export]
+	public float AerialDashHorizontalSpeed { get; set; } = 30f;
+
+	[Export]
+	public float AerialDashVerticalSpeed { get; set; } = 10f;
+
+	[Signal]
+	public delegate void ApplyAerialDashImpulseEventHandler(Vector2 aerialDashImpulse);
+
+	[Export]
 	public float SpeedMultiplier { get; set; } = 1.4f;
 	private Vector2 appliedSpeedUp;
 
@@ -33,6 +48,9 @@ public partial class MovementComponent : Node
 
 	private Vector2 ScaledJumpVector => new(0f, -JumpImpulse * (float)Math.Sqrt(scalingComponent.Size));
 	private float ScaledTorque => Torque * scalingComponent.Size;
+	private float ScaledDashRotation => DashRotation * scalingComponent.Size * scalingComponent.Size;
+	private float ScaledAerialDashHorizontalSpeed => AerialDashHorizontalSpeed * (float)Math.Sqrt(scalingComponent.Size);
+	private float ScaledAerialDashVerticalSpeed => -AerialDashVerticalSpeed * (float)Math.Sqrt(scalingComponent.Size);
 	private bool IsOnFloor => groundCollisions.Count != 0;
 	private bool isGravityMultiplierOn = false;
 
@@ -47,6 +65,7 @@ public partial class MovementComponent : Node
 		checkJump();
 		checkForceGravity();
 		checkRotation();
+		checkDash();
 	}
 
 
@@ -75,6 +94,27 @@ public partial class MovementComponent : Node
 			EmitSignal(SignalName.ApplyTorque, ScaledTorque);
 		if (Input.IsActionPressed("left"))
 			EmitSignal(SignalName.ApplyTorque, -ScaledTorque);
+	}
+
+	private void checkDash()
+	{
+		if (!Input.IsActionJustPressed("dash"))
+			return;
+
+		if (IsOnFloor)
+		{
+			if (Input.IsActionPressed("left"))
+				EmitSignal(SignalName.ApplyDashRotation, -ScaledDashRotation);
+			else
+				EmitSignal(SignalName.ApplyDashRotation, ScaledDashRotation);
+		}
+		else
+		{
+			if (Input.IsActionPressed("left"))
+				EmitSignal(SignalName.ApplyAerialDashImpulse, new Vector2(-ScaledAerialDashHorizontalSpeed, ScaledAerialDashVerticalSpeed));
+			else
+				EmitSignal(SignalName.ApplyAerialDashImpulse, new Vector2(ScaledAerialDashHorizontalSpeed, ScaledAerialDashVerticalSpeed));
+		}
 	}
 
 	private void checkForceGravity()

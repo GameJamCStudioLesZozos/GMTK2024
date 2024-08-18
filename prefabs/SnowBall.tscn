@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8ifnct3byuxj"]
+[gd_scene load_steps=12 format=3 uid="uid://8ifnct3byuxj"]
 
 [ext_resource type="Texture2D" uid="uid://dtjolwwa8wa8r" path="res://Sprites/snowball_happy.png" id="1_0x708"]
 [ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="1_6sdjc"]
@@ -10,11 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://dyh63723p4ikn" path="res://Sprites/snowball_ill.png" id="5_lxmun"]
 [ext_resource type="Script" path="res://scripts/MovementComponent.cs" id="5_mjtwt"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnx3d"]
+friction = 1000.0
+rough = true
+bounce = 0.2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
 
 [node name="SnowBall" type="RigidBody2D" groups=["Player"]]
 position = Vector2(60, 60)
 collision_mask = 6
+physics_material_override = SubResource("PhysicsMaterial_xnx3d")
 contact_monitor = true
 max_contacts_reported = 20
 constant_force = Vector2(0, -10)
@@ -47,6 +53,9 @@ script = ExtResource("3_0uxef")
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("5_mjtwt")
 Torque = 3000.0
+DashRotation = 3000.0
+AerialDashHorizontalSpeed = 500.0
+AerialDashVerticalSpeed = 100.0
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("5_h7spy")
@@ -58,6 +67,8 @@ CameraBaseZoom = 3.0
 [connection signal="body_exited" from="." to="MovementComponent" method="_OnBodyExited"]
 [connection signal="Scaled" from="ScalingComponent" to="Camera" method="HandleNewScaling"]
 [connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]
+[connection signal="ApplyAerialDashImpulse" from="MovementComponent" to="." method="apply_central_impulse"]
+[connection signal="ApplyDashRotation" from="MovementComponent" to="." method="apply_torque_impulse"]
 [connection signal="ApplyTorque" from="MovementComponent" to="." method="apply_torque"]
 [connection signal="ForceGravity" from="MovementComponent" to="." method="set_gravity_scale"]
 [connection signal="Jumped" from="MovementComponent" to="." method="apply_central_impulse"]
