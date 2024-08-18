@@ -19,7 +19,7 @@ public partial class Obstacle : Area2D
 
             if (playerScalingComponent.GetStrength() < RequiredStrength)
             {
-                playerScalingComponent.ScaleSize(-DamageDealt);
+                playerScalingComponent.TakeDamage(DamageDealt);
                 Shake();
             }
             else
