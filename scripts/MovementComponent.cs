@@ -71,7 +71,7 @@ public partial class MovementComponent : Node
 
 	public void _OnBodyEntered(Node node)
 	{
-		if (node.IsInGroup("Snow"))
+		if (node.IsInGroup("Ground"))
 			groundCollisions.Add(node);
 	}
 
