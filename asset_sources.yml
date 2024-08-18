@@ -6,4 +6,12 @@ assets:
   - name: snowball
     author: E. Hashimoto
     url: https://www.spriters-resource.com/pc_computer/buster/sheet/75387/
-    licence: fair use
+    licence: Fair use
+  - name: hiker
+    author: Chr0ma Dave
+    url: https://chroma-dave.itch.io/pixelart-hiker
+    licence: Free
+  - name: penguins
+    author: Yevhen Babiichuk
+    url: https://opengameart.org/content/pixel-art-penguin-npc
+    licence: CC-BY-SA 4.0
