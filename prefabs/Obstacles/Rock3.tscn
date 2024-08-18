@@ -1,25 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://cg7f7xbxwvvhq"]
 
 [ext_resource type="Script" path="res://scripts/Obstacle.cs" id="1_tx74n"]
-[ext_resource type="Texture2D" uid="uid://bhoc3okhrkgrh" path="res://Sprites/tree1_big_dark.png" id="2_vnxy2"]
+[ext_resource type="Texture2D" uid="uid://r3u451wp6t3n" path="res://Sprites/Rocks/rock_snowy_1a_al1.svg" id="2_aqim6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1hwq"]
-radius = 75.0
-height = 250.0
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_7gu1a"]
+segments = PackedVector2Array(-97, 41, -40, -60, -40, -60, 35, -50, 35, -50, 35, -10, 35, -10, 95, 35, 95, 35, 0, 70, 0, 70, -97, 41)
 
-[node name="Tree" type="Area2D" groups=["Obstacle"]]
+[node name="Rock3" type="Area2D" groups=["Obstacle"]]
 collision_layer = 4
 script = ExtResource("1_tx74n")
 RequiredStrength = 100.0
 DamageDealt = 3.0
 
-[node name="TreeSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.51, 0.51)
-texture = ExtResource("2_vnxy2")
-offset = Vector2(0, -245)
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_aqim6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -125)
-shape = SubResource("CapsuleShape2D_x1hwq")
+shape = SubResource("ConcavePolygonShape2D_7gu1a")
 
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

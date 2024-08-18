@@ -1,25 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6kuso610f8gc"]
 
 [ext_resource type="Script" path="res://scripts/Obstacle.cs" id="1_aybk3"]
-[ext_resource type="Texture2D" uid="uid://bhoc3okhrkgrh" path="res://Sprites/tree1_big_dark.png" id="2_56ol5"]
+[ext_resource type="Texture2D" uid="uid://bf4vri1eim7is" path="res://Sprites/Bushes/mountain_flora_01h_al1.svg" id="2_iwrsa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1hwq"]
-radius = 75.0
-height = 250.0
+radius = 18.0
+height = 70.0
 
-[node name="Tree" type="Area2D" groups=["Obstacle"]]
+[node name="Bush8" type="Area2D" groups=["Obstacle"]]
 collision_layer = 4
 script = ExtResource("1_aybk3")
 RequiredStrength = 100.0
 DamageDealt = 3.0
 
-[node name="TreeSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.51, 0.51)
-texture = ExtResource("2_56ol5")
-offset = Vector2(0, -245)
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_iwrsa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -125)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_x1hwq")
 
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
