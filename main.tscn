@@ -33,7 +33,6 @@ scale = Vector2(5.215, 5.215)
 [node name="Tree" parent="." instance=ExtResource("3_g8ss2")]
 position = Vector2(3573, 925)
 rotation = 0.174533
-scale = Vector2(0.5, 0.5)
 
 [node name="Tree3" parent="." instance=ExtResource("3_g8ss2")]
 position = Vector2(211, 460)
