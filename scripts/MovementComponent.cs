@@ -11,6 +11,9 @@ public partial class MovementComponent : Node
 
 	[Signal]
 	public delegate void JumpedEventHandler(Vector2 impulse);
+	
+	[Export]
+	public PackedScene SplitInstance;
 
 	[Export]
 	public float GravityMultiplier { get; set; } = 10f;
@@ -66,6 +69,7 @@ public partial class MovementComponent : Node
 		checkForceGravity();
 		checkRotation();
 		checkDash();
+		checkSplit();
 	}
 
 
@@ -85,6 +89,20 @@ public partial class MovementComponent : Node
 		if (IsOnFloor && Input.IsActionJustPressed("jump"))
 		{
 			EmitSignal(SignalName.Jumped, ScaledJumpVector);
+		}
+	}
+	
+	private void checkSplit()
+	{
+		if (Input.IsActionJustPressed("split"))
+		{
+			scalingComponent.ScaleSize(-scalingComponent.Size/2);
+			var scene = GD.Load<PackedScene>(SplitInstance.ResourcePath);
+			var instance = scene.Instantiate<Node2D>();
+			instance.Position = GetParent<Node2D>().Position;
+			var newScalingComponent = instance.GetNode<ScalingComponent>("ScalingComponent");
+			newScalingComponent.ScaleSize(scalingComponent.Size - newScalingComponent.Size);
+			AddChild(instance);
 		}
 	}
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://8ifnct3byuxj"]
+[gd_scene load_steps=13 format=3 uid="uid://8ifnct3byuxj"]
 
 [ext_resource type="Texture2D" uid="uid://dtjolwwa8wa8r" path="res://Sprites/snowball_happy.png" id="1_0x708"]
 [ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="1_6sdjc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/CameraAutoScale.cs" id="5_h7spy"]
 [ext_resource type="Texture2D" uid="uid://dyh63723p4ikn" path="res://Sprites/snowball_ill.png" id="5_lxmun"]
 [ext_resource type="Script" path="res://scripts/MovementComponent.cs" id="5_mjtwt"]
+[ext_resource type="PackedScene" uid="uid://bchkvnl3rtors" path="res://prefabs/SplitSnowBall.tscn" id="9_4smi5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnx3d"]
 friction = 1000.0
@@ -17,9 +18,9 @@ bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
 
-[node name="SnowBall" type="RigidBody2D" groups=["Player"]]
+[node name="SnowBall" type="RigidBody2D" groups=["Player", "Snow"]]
 position = Vector2(60, 60)
-collision_mask = 6
+collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_xnx3d")
 contact_monitor = true
 max_contacts_reported = 20
@@ -52,6 +53,7 @@ script = ExtResource("3_0uxef")
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("5_mjtwt")
+SplitInstance = ExtResource("9_4smi5")
 Torque = 3000.0
 DashRotation = 3000.0
 AerialDashHorizontalSpeed = 500.0

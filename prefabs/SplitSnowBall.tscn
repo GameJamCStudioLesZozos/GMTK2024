@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://bchkvnl3rtors"]
+
+[ext_resource type="Script" path="res://scripts/CharacterSpriteController.cs" id="1_2t5jn"]
+[ext_resource type="Texture2D" uid="uid://dtjolwwa8wa8r" path="res://Sprites/snowball_happy.png" id="2_fa2fn"]
+[ext_resource type="Texture2D" uid="uid://chkk8crdn70ix" path="res://Sprites/snowball_surprised.png" id="3_ywmar"]
+[ext_resource type="Texture2D" uid="uid://dju8fpsqsadob" path="res://Sprites/snowball_concerned.png" id="4_0ty8k"]
+[ext_resource type="Texture2D" uid="uid://dyh63723p4ikn" path="res://Sprites/snowball_ill.png" id="5_0d61b"]
+[ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="6_1xs0x"]
+[ext_resource type="Script" path="res://scripts/BallSnowCollision.cs" id="7_fswse"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnx3d"]
+friction = 1000.0
+rough = true
+bounce = 0.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
+
+[node name="SnowBall" type="RigidBody2D" groups=["Snow"]]
+position = Vector2(60, 60)
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_xnx3d")
+contact_monitor = true
+max_contacts_reported = 20
+constant_force = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_heevr")
+
+[node name="Character" type="Node2D" parent="."]
+script = ExtResource("1_2t5jn")
+happy = ExtResource("2_fa2fn")
+surprised = ExtResource("3_ywmar")
+concerned = ExtResource("4_0ty8k")
+ill = ExtResource("5_0d61b")
+surprisedTreshold = 1.0
+concernedTreshold = 2.0
+illTreshold = 3.0
+
+[node name="Node" type="Sprite2D" parent="Character" groups=["Snow"]]
+physics_interpolation_mode = 1
+texture_filter = 3
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("2_fa2fn")
+
+[node name="ScalingComponent" type="Node" parent="."]
+script = ExtResource("6_1xs0x")
+
+[node name="SnowCollisionComponent" type="Node" parent="."]
+script = ExtResource("7_fswse")
+
+[connection signal="body_entered" from="." to="SnowCollisionComponent" method="_OnBodyEntered"]
+[connection signal="body_exited" from="." to="SnowCollisionComponent" method="_OnBodyExited"]
+[connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]
