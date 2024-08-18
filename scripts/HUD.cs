@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.Serialization;
 
 public partial class HUD : Control
 {
@@ -33,6 +34,8 @@ public partial class HUD : Control
 
         updateUITimer.Timeout += UpdateUI;
 		updateUITimer.Start();
+
+		SignalBus.Instance.Connect(SignalBus.SignalName.PlayerDied, Callable.From(OnPlayerDead));
 	}
 
 	void UpdateUI()
@@ -52,6 +55,12 @@ public partial class HUD : Control
 	{
 		TimeSpan timeSpan = main.GetTime();
 		return string.Format("{1:s\\.fff}", "s\\.fff", timeSpan);
+	}
+
+
+	public void OnPlayerDead()
+	{
+		updateUITimer.Stop();
 	}
 
 }

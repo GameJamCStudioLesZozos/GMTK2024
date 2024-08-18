@@ -16,11 +16,16 @@ gradient = SubResource("Gradient_57df1")
 [node name="Main" type="Node2D"]
 script = ExtResource("1_a3ook")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="DeathscreenLayer" type="CanvasLayer" parent="."]
+layer = 2
 
-[node name="DeathscreenUI" parent="CanvasLayer" instance=ExtResource("4_kqmg8")]
+[node name="DeathscreenUI" parent="DeathscreenLayer" instance=ExtResource("4_kqmg8")]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("3_stqdm")]
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUDLayer" instance=ExtResource("3_stqdm")]
+offset_top = -3.0
+offset_bottom = -3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3000, 1000)
@@ -38,6 +43,8 @@ scale = Vector2(5.215, 5.215)
 [node name="Tree" parent="." instance=ExtResource("3_g8ss2")]
 position = Vector2(3573, 925)
 rotation = 0.174533
+RequiredStrength = 1e+06
+DamageDealt = 10000.0
 
 [node name="Tree3" parent="." instance=ExtResource("3_g8ss2")]
 position = Vector2(211, 460)
