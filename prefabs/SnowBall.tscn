@@ -58,6 +58,7 @@ Torque = 3000.0
 DashRotation = 3000.0
 AerialDashHorizontalSpeed = 500.0
 AerialDashVerticalSpeed = 100.0
+MinSizeDashThreshold = 3.0
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("5_h7spy")
@@ -74,3 +75,4 @@ CameraBaseZoom = 3.0
 [connection signal="ApplyTorque" from="MovementComponent" to="." method="apply_torque"]
 [connection signal="ForceGravity" from="MovementComponent" to="." method="set_gravity_scale"]
 [connection signal="Jumped" from="MovementComponent" to="." method="apply_central_impulse"]
+[connection signal="LoseSize" from="MovementComponent" to="ScalingComponent" method="ScaleSize"]

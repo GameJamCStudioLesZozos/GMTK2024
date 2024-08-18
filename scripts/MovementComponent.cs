@@ -43,8 +43,16 @@ public partial class MovementComponent : Node
 	public delegate void ApplyAerialDashImpulseEventHandler(Vector2 aerialDashImpulse);
 
 	[Export]
-	public float SpeedMultiplier { get; set; } = 1.4f;
-	private Vector2 appliedSpeedUp;
+	public float MinSizeDashThreshold { get; set; } = 2f;
+
+	[Export]
+	public float DashSizeLostFactor { get; set; } = 0.25f;
+
+	[Signal]
+	public delegate void LoseSizeEventHandler(float amount);
+
+	[Export]
+	public double DashCooldown { get; set; } = 2;
 
 	private List<Node> groundCollisions = new();
 	private ScalingComponent scalingComponent;
@@ -56,10 +64,14 @@ public partial class MovementComponent : Node
 	private float ScaledAerialDashVerticalSpeed => -AerialDashVerticalSpeed * (float)Math.Sqrt(scalingComponent.Size);
 	private bool IsOnFloor => groundCollisions.Count != 0;
 	private bool isGravityMultiplierOn = false;
+	private Timer dashCooldownTimer = new();
+	private bool isOnDashCooldown = false;
 
 	public override void _Ready()
 	{
 		scalingComponent = (ScalingComponent)GetParent().GetChildren().First(node => node is ScalingComponent);
+		AddChild(dashCooldownTimer);
+		dashCooldownTimer.Timeout += () => isOnDashCooldown = false;
 	}
 
 
@@ -119,6 +131,12 @@ public partial class MovementComponent : Node
 		if (!Input.IsActionJustPressed("dash"))
 			return;
 
+		if (isOnDashCooldown)
+			return;
+
+		if (scalingComponent.Size <= MinSizeDashThreshold)
+			return;
+
 		if (IsOnFloor)
 		{
 			if (Input.IsActionPressed("left"))
@@ -133,6 +151,10 @@ public partial class MovementComponent : Node
 			else
 				EmitSignal(SignalName.ApplyAerialDashImpulse, new Vector2(ScaledAerialDashHorizontalSpeed, ScaledAerialDashVerticalSpeed));
 		}
+
+		isOnDashCooldown = true;
+		dashCooldownTimer.Start(DashCooldown);
+		EmitSignal(SignalName.LoseSize, -DashSizeLostFactor * scalingComponent.Size);
 	}
 
 	private void checkForceGravity()
