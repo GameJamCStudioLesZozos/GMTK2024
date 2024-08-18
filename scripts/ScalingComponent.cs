@@ -5,6 +5,10 @@ using System.Diagnostics;
 
 public partial class ScalingComponent : Node
 {
+	[Export] public float sizeStrengthFactor = 1;
+	[Export] public float speedStrengthFactor = 1;
+	[Export] public float rotationStrengthFactor = 1;
+
 	[Signal]
 	public delegate void ScaledEventHandler(float newScale);
 
@@ -28,8 +32,8 @@ public partial class ScalingComponent : Node
 
 	public float GetStrength()
 	{
-		// TODO update with what need
-		return Size * 10;
+		var parent = GetParent<RigidBody2D>();
+		return parent.LinearVelocity.Length() * speedStrengthFactor + Size * sizeStrengthFactor + parent.AngularVelocity * rotationStrengthFactor;
 	}
 
 	public void ScaleSize(float amount)

@@ -26,7 +26,7 @@ public partial class CharacterSpriteController : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		rotationalSpeed = (GetParent() as RigidBody2D).AngularVelocity;
+		rotationalSpeed = Math.Abs(GetParent<RigidBody2D>().AngularVelocity);
 		if (rotationalSpeed > 0 && status != 0)
 		{
 			node.Texture = happy;
