@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ggb3xlc6tqqt"]
+
+[ext_resource type="Texture2D" uid="uid://bhoc3okhrkgrh" path="res://Sprites/tree1_big_dark.png" id="1_qallb"]
+
+[node name="DecorativeTree" type="Sprite2D"]
+texture = ExtResource("1_qallb")
