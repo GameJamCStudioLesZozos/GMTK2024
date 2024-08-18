@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://8ifnct3byuxj"]
+[gd_scene load_steps=22 format=3 uid="uid://8ifnct3byuxj"]
 
 [ext_resource type="Texture2D" uid="uid://dtjolwwa8wa8r" path="res://Sprites/snowball_happy.png" id="1_0x708"]
+[ext_resource type="Script" path="res://prefabs/SnowBallPhysics.cs" id="1_4pn1b"]
 [ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="1_6sdjc"]
 [ext_resource type="Script" path="res://scripts/CharacterSpriteController.cs" id="1_rg8wy"]
 [ext_resource type="Script" path="res://scripts/BallSnowCollision.cs" id="3_0uxef"]
@@ -104,6 +105,7 @@ physics_material_override = SubResource("PhysicsMaterial_xnx3d")
 contact_monitor = true
 max_contacts_reported = 20
 constant_force = Vector2(0, -10)
+script = ExtResource("1_4pn1b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_heevr")
@@ -141,7 +143,8 @@ script = ExtResource("3_0uxef")
 script = ExtResource("5_mjtwt")
 SplitInstance = ExtResource("9_4smi5")
 Torque = 3000.0
-DashRotation = 3000.0
+GroundDashRotation = 3000.0
+AirDashRotation = 500.0
 AerialDashHorizontalSpeed = 500.0
 AerialDashVerticalSpeed = 100.0
 MinSizeDashThreshold = 3.0
@@ -166,3 +169,4 @@ CameraBaseZoom = 3.0
 [connection signal="ForceGravity" from="MovementComponent" to="." method="set_gravity_scale"]
 [connection signal="Jumped" from="MovementComponent" to="." method="apply_central_impulse"]
 [connection signal="LoseSize" from="MovementComponent" to="ScalingComponent" method="ScaleSize"]
+[connection signal="SetBounciness" from="MovementComponent" to="." method="SetBounciness"]

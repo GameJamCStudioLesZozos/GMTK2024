@@ -6,66 +6,50 @@ using System.Linq;
 
 public partial class MovementComponent : Node
 {
-	[Export]
-	public float JumpImpulse { get; set; } = 300f;
+	// serialized values
+	[Export] public float JumpImpulse { get; set; } = 300f;
+	[Export] public PackedScene SplitInstance;
+	[Export] public float GravityMultiplier { get; set; } = 10f;
+	[Export] public float Torque { get; set; } = 10f;
+	[Export] public float GroundDashRotation { get; set; } = 30f;
+	[Export] public float AirDashRotation { get; set; } = 30f;
+	[Export] public float AerialDashHorizontalSpeed { get; set; } = 30f;
+	[Export] public float AerialDashVerticalSpeed { get; set; } = 10f;
+	[Export] public float MinSizeDashThreshold { get; set; } = 2f;
+	[Export] public float DashSizeLostFactor { get; set; } = 0.25f;
+	[Export] public double DashCooldown { get; set; } = 2;
+	[Export] public int NbFramesBufferJump { get; set; } = 6;
+	[Export] public int NbFramesBufferDash { get; set; } = 3;
 
-	[Signal]
-	public delegate void JumpedEventHandler(Vector2 impulse);
-	
-	[Export]
-	public PackedScene SplitInstance;
+	// signals
+	[Signal] public delegate void JumpedEventHandler(Vector2 impulse);
+	[Signal] public delegate void ForceGravityEventHandler(float multiplier);
+	[Signal] public delegate void ApplyTorqueEventHandler(float torque);
+	[Signal] public delegate void ApplyDashRotationEventHandler(float dashRotation);
+	[Signal] public delegate void ApplyAerialDashImpulseEventHandler(Vector2 aerialDashImpulse);
+	[Signal] public delegate void LoseSizeEventHandler(float amount);
+	[Signal] public delegate void SetBouncinessEventHandler(bool on);
 
-	[Export]
-	public float GravityMultiplier { get; set; } = 10f;
-
-	[Signal]
-	public delegate void ForceGravityEventHandler(float multiplier);
-
-	[Export]
-	public float Torque { get; set; } = 10f;
-
-	[Signal]
-	public delegate void ApplyTorqueEventHandler(float torque);
-
-	[Export]
-	public float DashRotation { get; set; } = 30f;
-
-	[Signal]
-	public delegate void ApplyDashRotationEventHandler(float dashRotation);
-
-	[Export]
-	public float AerialDashHorizontalSpeed { get; set; } = 30f;
-
-	[Export]
-	public float AerialDashVerticalSpeed { get; set; } = 10f;
-
-	[Signal]
-	public delegate void ApplyAerialDashImpulseEventHandler(Vector2 aerialDashImpulse);
-
-	[Export]
-	public float MinSizeDashThreshold { get; set; } = 2f;
-
-	[Export]
-	public float DashSizeLostFactor { get; set; } = 0.25f;
-
-	[Signal]
-	public delegate void LoseSizeEventHandler(float amount);
-
-	[Export]
-	public double DashCooldown { get; set; } = 2;
-
+	// fields
 	private List<Node> groundCollisions = new();
-	private ScalingComponent scalingComponent;
-
-	private Vector2 ScaledJumpVector => new(0f, -JumpImpulse * (float)Math.Sqrt(scalingComponent.Size));
-	private float ScaledTorque => Torque * scalingComponent.Size;
-	private float ScaledDashRotation => DashRotation * scalingComponent.Size * scalingComponent.Size;
-	private float ScaledAerialDashHorizontalSpeed => AerialDashHorizontalSpeed * (float)Math.Sqrt(scalingComponent.Size);
-	private float ScaledAerialDashVerticalSpeed => -AerialDashVerticalSpeed * (float)Math.Sqrt(scalingComponent.Size);
-	private bool IsOnFloor => groundCollisions.Count != 0;
+	private ScalingComponent scalingComponent = null;
 	private bool isGravityMultiplierOn = false;
 	private Timer dashCooldownTimer = new();
 	private bool isOnDashCooldown = false;
+	private int jumpBufferFramesLeft = 0;
+	private int dashBufferFramesLeft = 0;
+
+	// properties
+	private Vector2 ScaledJumpVector => new(0f, -JumpImpulse * (float)Math.Sqrt(scalingComponent.Size));
+	private float ScaledTorque => Torque * scalingComponent.Size;
+	private float ScaledGroundDashRotation => GroundDashRotation * scalingComponent.Size * scalingComponent.Size;
+	private float ScaledAirDashRotation => AirDashRotation * scalingComponent.Size * scalingComponent.Size;
+	private float CurrentScaledDashRotation => IsOnFloor ? ScaledGroundDashRotation : ScaledAirDashRotation;
+	private float ScaledAerialDashHorizontalSpeed => AerialDashHorizontalSpeed * (float)Math.Sqrt(scalingComponent.Size);
+	private float ScaledAerialDashVerticalSpeed => -AerialDashVerticalSpeed * (float)Math.Sqrt(scalingComponent.Size);
+	private bool IsOnFloor => groundCollisions.Count != 0;
+	private bool IsJumpRequested => jumpBufferFramesLeft >= 0;
+	private bool IsDashRequested => dashBufferFramesLeft >= 0;
 
 	public override void _Ready()
 	{
@@ -98,17 +82,24 @@ public partial class MovementComponent : Node
 
 	private void checkJump()
 	{
-		if (IsOnFloor && Input.IsActionJustPressed("jump"))
+		if (IsJumpRequested)
+			--jumpBufferFramesLeft;
+
+		if (Input.IsActionJustPressed("jump"))
+			jumpBufferFramesLeft = NbFramesBufferJump;
+
+		if (IsOnFloor && IsJumpRequested)
 		{
+			jumpBufferFramesLeft = 0;
 			EmitSignal(SignalName.Jumped, ScaledJumpVector);
 		}
 	}
-	
+
 	private void checkSplit()
 	{
 		if (Input.IsActionJustPressed("split"))
 		{
-			scalingComponent.ScaleSize(-scalingComponent.Size/2);
+			scalingComponent.ScaleSize(-scalingComponent.Size / 2);
 			var scene = GD.Load<PackedScene>(SplitInstance.ResourcePath);
 			var instance = scene.Instantiate<Node2D>();
 			instance.Position = GetParent<Node2D>().Position;
@@ -128,30 +119,41 @@ public partial class MovementComponent : Node
 
 	private void checkDash()
 	{
-		if (!Input.IsActionJustPressed("dash"))
-			return;
+		// dash at the end of the buffer, or as soon as we touch the ground
 
-		if (isOnDashCooldown)
-			return;
-
-		if (scalingComponent.Size <= MinSizeDashThreshold)
-			return;
-
-		if (IsOnFloor)
+		bool dashBufferEnded = false;
+		if (IsDashRequested)
 		{
-			if (Input.IsActionPressed("left"))
-				EmitSignal(SignalName.ApplyDashRotation, -ScaledDashRotation);
-			else
-				EmitSignal(SignalName.ApplyDashRotation, ScaledDashRotation);
-		}
-		else
-		{
-			if (Input.IsActionPressed("left"))
-				EmitSignal(SignalName.ApplyAerialDashImpulse, new Vector2(-ScaledAerialDashHorizontalSpeed, ScaledAerialDashVerticalSpeed));
-			else
-				EmitSignal(SignalName.ApplyAerialDashImpulse, new Vector2(ScaledAerialDashHorizontalSpeed, ScaledAerialDashVerticalSpeed));
+			--dashBufferFramesLeft;
+			if (!IsDashRequested)
+			{
+				dashBufferEnded = true;
+				EmitSignal(SignalName.SetBounciness, true);
+			}
 		}
 
+		if (isOnDashCooldown || scalingComponent.Size <= MinSizeDashThreshold)
+			return;
+
+		if (!IsDashRequested && Input.IsActionJustPressed("dash"))
+		{
+			dashBufferFramesLeft = NbFramesBufferDash;
+			EmitSignal(SignalName.SetBounciness, false);
+		}
+
+		if ((!IsDashRequested || !IsOnFloor) && !dashBufferEnded)
+			return;
+
+		float sign = Input.IsActionPressed("left") ? -1f : 1f;
+
+		// if in the air : move horizontally
+		if (!IsOnFloor)
+			EmitSignal(SignalName.ApplyAerialDashImpulse, new Vector2(sign * ScaledAerialDashHorizontalSpeed, ScaledAerialDashVerticalSpeed));
+
+		// always : increase rotation speed
+		EmitSignal(SignalName.ApplyDashRotation, sign * CurrentScaledDashRotation);
+
+		dashBufferFramesLeft = 0;
 		isOnDashCooldown = true;
 		dashCooldownTimer.Start(DashCooldown);
 		EmitSignal(SignalName.LoseSize, -DashSizeLostFactor * scalingComponent.Size);
