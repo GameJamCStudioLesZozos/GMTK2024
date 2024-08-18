@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ha1xj86ku6m"]
+
+[ext_resource type="Script" path="res://scripts/Obstacle.cs" id="1_26m7l"]
+[ext_resource type="Texture2D" uid="uid://brxwi5qxo86ky" path="res://Sprites/juju_grandma_tent_01a_al1.svg" id="2_dgnkn"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_2y2nn"]
+points = PackedVector2Array(0, 65, -75, 35, -15, -65, 0, -65, 60, 40)
+
+[node name="Tent" type="Area2D" groups=["Obstacle"]]
+collision_layer = 4
+script = ExtResource("1_26m7l")
+RequiredStrength = 100.0
+DamageDealt = 3.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("2_dgnkn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_2y2nn")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

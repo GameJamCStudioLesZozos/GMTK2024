@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brxwi5qxo86ky"
-path="res://.godot/imported/juju_grandma_tent_01a_al1.svg-3281cadfa1971911060f8d18397ce54a.ctex"
+uid="uid://be80ccchrinln"
+path="res://.godot/imported/snow_bush_01a_al1.svg-9b5ef56cbafe175aa12ce4b1b8226d93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Rocks/juju_grandma_tent_01a_al1.svg"
-dest_files=["res://.godot/imported/juju_grandma_tent_01a_al1.svg-3281cadfa1971911060f8d18397ce54a.ctex"]
+source_file="res://Sprites/Bushes/snow_bush_01a_al1.svg"
+dest_files=["res://.godot/imported/snow_bush_01a_al1.svg-9b5ef56cbafe175aa12ce4b1b8226d93.ctex"]
 
 [params]
 

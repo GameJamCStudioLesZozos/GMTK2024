@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1rqatygfeqpy"]
+
+[ext_resource type="Texture2D" uid="uid://dpmd3t6mcvoe0" path="res://Sprites/Bushes/mountain_flora_01f_al1.svg" id="1_ylmb5"]
+
+[node name="DecorativeBush6" type="Sprite2D"]
+texture = ExtResource("1_ylmb5")

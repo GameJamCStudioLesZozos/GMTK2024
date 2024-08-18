@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://de3762i6yk037"]
+
+[ext_resource type="Texture2D" uid="uid://brxwi5qxo86ky" path="res://Sprites/juju_grandma_tent_01a_al1.svg" id="1_s7e6m"]
+
+[node name="DecorativeTent" type="Sprite2D"]
+texture = ExtResource("1_s7e6m")

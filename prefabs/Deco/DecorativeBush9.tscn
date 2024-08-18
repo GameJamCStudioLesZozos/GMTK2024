@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://co8rt1ei4v46v"]
+
+[ext_resource type="Texture2D" uid="uid://be80ccchrinln" path="res://Sprites/Bushes/snow_bush_01a_al1.svg" id="1_3jgso"]
+
+[node name="DecorativeBush9" type="Sprite2D"]
+texture = ExtResource("1_3jgso")

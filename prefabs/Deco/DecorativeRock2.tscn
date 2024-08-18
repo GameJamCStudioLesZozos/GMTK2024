@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci4arlesfvyo8"]
+
+[ext_resource type="Texture2D" uid="uid://d4c3vk15oyw5g" path="res://Sprites/Rocks/cone_top_snow_01b_al1.svg" id="1_ae8yy"]
+
+[node name="DecorativeRock2" type="Sprite2D"]
+texture = ExtResource("1_ae8yy")

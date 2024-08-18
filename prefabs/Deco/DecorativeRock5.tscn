@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx43bnada7lgj"]
+
+[ext_resource type="Texture2D" uid="uid://1tge38be77mh" path="res://Sprites/Rocks/rock_snowy_1c_al1.svg" id="1_413wd"]
+
+[node name="DecorativeRock5" type="Sprite2D"]
+texture = ExtResource("1_413wd")

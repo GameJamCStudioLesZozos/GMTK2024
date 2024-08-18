@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqjk3ues6fqqe"]
+
+[ext_resource type="Script" path="res://scripts/Obstacle.cs" id="1_hmmua"]
+[ext_resource type="Texture2D" uid="uid://b5phvqfog4ul4" path="res://Sprites/Bushes/mountain_flora_01c_al1.svg" id="2_8fqk6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1hwq"]
+height = 62.0
+
+[node name="Bush3" type="Area2D" groups=["Obstacle"]]
+collision_layer = 4
+script = ExtResource("1_hmmua")
+RequiredStrength = 100.0
+DamageDealt = 3.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("2_8fqk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_x1hwq")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

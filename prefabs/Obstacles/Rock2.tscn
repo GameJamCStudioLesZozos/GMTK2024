@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ybm1ni5c1jx"]
+
+[ext_resource type="Script" path="res://scripts/Obstacle.cs" id="1_7b45l"]
+[ext_resource type="Texture2D" uid="uid://d4c3vk15oyw5g" path="res://Sprites/Rocks/cone_top_snow_01b_al1.svg" id="2_2wysp"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_jmgic"]
+points = PackedVector2Array(-150, -32, 0, 0, 150, -32, -16, -150)
+
+[node name="Rock2" type="Area2D" groups=["Obstacle"]]
+collision_layer = 4
+script = ExtResource("1_7b45l")
+RequiredStrength = 100.0
+DamageDealt = 3.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("2_2wysp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 75)
+shape = SubResource("ConvexPolygonShape2D_jmgic")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
