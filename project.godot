@@ -28,6 +28,10 @@ project/assembly_name="GMTK2024"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/node_brush/plugin.cfg")
+
 [global_group]
 
 Player=""

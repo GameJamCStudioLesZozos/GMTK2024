@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://5ktfr20futg5"]
+[gd_scene load_steps=10 format=3 uid="uid://5ktfr20futg5"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_a3ook"]
 [ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/SnowBall.tscn" id="1_ejra5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Obstacles/Tree.tscn" id="3_g8ss2"]
 [ext_resource type="PackedScene" uid="uid://dc2j5qdj5g4mp" path="res://prefabs/HUD.tscn" id="3_stqdm"]
 [ext_resource type="PackedScene" uid="uid://bwexcskfbudn" path="res://prefabs/DeathscreenUI.tscn" id="4_kqmg8"]
+[ext_resource type="PackedScene" uid="uid://ggb3xlc6tqqt" path="res://prefabs/Deco/DecorativeTree.tscn" id="7_t0s7j"]
 
 [sub_resource type="Gradient" id="Gradient_57df1"]
 colors = PackedColorArray(0.278973, 0.544391, 0.884461, 1, 0.7, 0.91, 1, 1)
@@ -46,232 +47,149 @@ rotation = 0.174533
 RequiredStrength = 1e+06
 DamageDealt = 10000.0
 
-[node name="Tree3" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(211, 460)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="Treeeees" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
 
-[node name="Tree2" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(91.0005, 476)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(390.5, 1277.5)
 
-[node name="Tree4" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(441, 501)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree2" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(1164.63, 1352.42)
 
-[node name="Tree5" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(321, 517)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree3" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(1763.95, 1502.25)
 
-[node name="Tree6" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(654, 532)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree4" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(2288.36, 1751.96)
 
-[node name="Tree7" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(534, 548)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree5" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(2787.79, 1876.82)
 
-[node name="Tree8" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(866, 564)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree6" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(3586.89, 2051.63)
 
-[node name="Tree9" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(746, 580)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree7" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(4385.98, 2126.54)
 
-[node name="Tree10" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1093, 607)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree8" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(5484.74, 2326.31)
 
-[node name="Tree11" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(973, 623)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree9" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(6109.04, 2501.12)
 
-[node name="Tree12" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1327, 648)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree10" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(7032.99, 2601)
 
-[node name="Tree13" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1207, 664)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree11" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(7607.34, 2625.98)
 
-[node name="Tree14" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1557, 689)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree12" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(8506.33, 2700.89)
 
-[node name="Tree15" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1437, 705)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree13" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(9130.62, 2950.61)
 
-[node name="Tree16" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1770, 720)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree14" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(9693.86, 2777.03)
 
-[node name="Tree17" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1650, 736)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree15" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(10209.3, 2956.82)
 
-[node name="Tree18" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1982, 752)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree16" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(10652.8, 2980.8)
 
-[node name="Tree19" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(1862, 768)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree17" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(11204.2, 3148.61)
 
-[node name="Tree20" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(2209, 795)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree18" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(11623.7, 3316.42)
 
-[node name="Tree21" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(2468, 876)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree19" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(488.267, 1830.1)
 
-[node name="Tree22" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(2348, 892)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree20" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(1339.3, 2009.89)
 
-[node name="Tree23" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(2698, 917)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree21" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(859.847, 2489.35)
 
-[node name="Tree24" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(2578, 933)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree22" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(476.28, 3040.73)
 
-[node name="Tree25" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(2911, 948)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree23" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(859.847, 3891.77)
 
-[node name="Tree26" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(2791, 964)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree24" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(1435.2, 3100.66)
 
-[node name="Tree27" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3123, 980)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree25" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(1842.74, 2369.49)
 
-[node name="Tree28" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3003, 996)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree26" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(1734.86, 3699.98)
 
-[node name="Tree29" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3350, 1023)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree27" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(2358.15, 2777.03)
 
-[node name="Tree30" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3230, 1039)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree28" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(2669.8, 3568.13)
 
-[node name="Tree31" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3584, 1064)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree29" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(3245.15, 2681.13)
 
-[node name="Tree32" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3464, 1080)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree30" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(3628.72, 3556.15)
 
-[node name="Tree33" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3814, 1105)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree31" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(4407.84, 2824.97)
 
-[node name="Tree34" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3694, 1121)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree32" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(4959.21, 3532.17)
 
-[node name="Tree35" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(4027, 1136)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree33" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(5127.02, 2824.97)
 
-[node name="Tree36" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3907, 1152)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree34" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(6205.81, 3604.09)
 
-[node name="Tree37" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(4239, 1168)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree35" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(7644.18, 3915.74)
 
-[node name="Tree38" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(4119, 1184)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree36" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(6493.48, 2920.86)
 
-[node name="Tree39" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(4466, 1211)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree37" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(5486.62, 3987.66)
 
-[node name="Tree40" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(4629, 1261)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree38" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(4252.01, 3927.73)
 
-[node name="Tree41" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(4979, 1286)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree39" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(2130.41, 4047.59)
 
-[node name="Tree42" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(4859, 1302)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree40" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(7164.72, 3148.61)
 
-[node name="Tree43" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(5192, 1317)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree41" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(8339.39, 3915.74)
 
-[node name="Tree44" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(5072, 1333)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree42" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(10017.5, 3843.82)
 
-[node name="Tree45" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(5404, 1349)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree43" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(11060.3, 3927.73)
 
-[node name="Tree46" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(5284, 1365)
-rotation = 0.349066
-scale = Vector2(0.25, 0.25)
+[node name="DecorativeTree44" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(8351.38, 3196.55)
 
-[node name="Tree47" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(5631, 1392)
-rotation = 0.523599
-scale = Vector2(0.125, 0.125)
+[node name="DecorativeTree45" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(9058.58, 3664.02)
+
+[node name="DecorativeTree46" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(6757.18, 3927.73)
+
+[node name="DecorativeTree47" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(3149.26, 4047.59)
+
+[node name="DecorativeTree48" parent="Treeeees" instance=ExtResource("7_t0s7j")]
+position = Vector2(5702.37, 3016.75)

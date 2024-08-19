@@ -4,3 +4,4 @@
 
 [node name="DecorativeTree" type="Sprite2D"]
 texture = ExtResource("1_qallb")
+offset = Vector2(0, -245)
