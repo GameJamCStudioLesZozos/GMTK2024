@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd0iscet5vxmg"]
+
+[ext_resource type="Script" path="res://scripts/FallingObstacle.cs" id="1_1s40m"]
+[ext_resource type="Texture2D" uid="uid://cywdo2ef0hx5o" path="res://Sprites/icicle_1b_al1.svg" id="1_tfg51"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_xll1e"]
+points = PackedVector2Array(-40, -120, 0, 160, 40, -120)
+
+[node name="FalllingStalactite" type="Area2D" groups=["Obstacle"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_1s40m")
+FallingSpeed = 40.0
+RequiredStrength = 1000.0
+DamageDealt = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tfg51")
+centered = false
+offset = Vector2(-70, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 175)
+shape = SubResource("ConvexPolygonShape2D_xll1e")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

@@ -9,7 +9,10 @@ public partial class Obstacle : Area2D
     [Export]
     public float DamageDealt { get; set; } = 0.5f;
 
-    public void _OnBodyEntered(Node2D node)
+    [Export]
+    public bool DestroyedOnColison { get; set; } = false;
+
+    public virtual void _OnBodyEntered(Node2D node)
     {
         if (node.IsInGroup("Player"))
         {
@@ -19,7 +22,6 @@ public partial class Obstacle : Area2D
 
             if (playerScalingComponent.GetStrength() < RequiredStrength)
             {
-                playerScalingComponent.TakeDamage(DamageDealt);
                 Shake();
             }
             else
