@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://yngy5xa033it"]
+
+[ext_resource type="Script" path="res://scripts/CollisionShape2dAutoFill.cs" id="1_mednp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_on0mo"]
+friction = 1000.0
+rough = true
+
+[node name="SnowStraight_Half" type="StaticBody2D" groups=["Ground", "Snow"]]
+physics_interpolation_mode = 1
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_on0mo")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+script = ExtResource("1_mednp")
+
+[node name="GroundPolygon" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(0, 0, 500, 0, 500, 200, 0, 200)

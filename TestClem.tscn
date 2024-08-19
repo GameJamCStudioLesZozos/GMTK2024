@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://nbds0exljp3b"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_ul821"]
+[ext_resource type="PackedScene" uid="uid://bwexcskfbudn" path="res://prefabs/DeathscreenUI.tscn" id="2_627ep"]
+[ext_resource type="PackedScene" uid="uid://dc2j5qdj5g4mp" path="res://prefabs/HUD.tscn" id="3_mwdgw"]
+[ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/SnowBall.tscn" id="4_ikkh3"]
+[ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Snow.tscn" id="5_pfbrs"]
+[ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Obstacles/Tree.tscn" id="6_qous7"]
+[ext_resource type="PackedScene" uid="uid://b56wtlteo7v7a" path="res://prefabs/BuildingBlocks/Rock/RockSmallSlope.tscn" id="7_cg3un"]
+
+[sub_resource type="Gradient" id="Gradient_57df1"]
+colors = PackedColorArray(0.278973, 0.544391, 0.884461, 1, 0.7, 0.91, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d8tl4"]
+gradient = SubResource("Gradient_57df1")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ul821")
+
+[node name="DeathscreenLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DeathscreenUI" parent="DeathscreenLayer" instance=ExtResource("2_627ep")]
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUDLayer" instance=ExtResource("3_mwdgw")]
+offset_top = -3.0
+offset_bottom = -3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3000, 1000)
+rotation = 1.5708
+texture = SubResource("GradientTexture1D_d8tl4")
+region_enabled = true
+region_rect = Rect2(0, 0, 2000, 6000)
+
+[node name="SnowBall" parent="." instance=ExtResource("4_ikkh3")]
+
+[node name="Polygon2D" parent="." instance=ExtResource("5_pfbrs")]
+position = Vector2(0, 300)
+scale = Vector2(5.215, 5.215)
+
+[node name="Tree" parent="." instance=ExtResource("6_qous7")]
+position = Vector2(3573, 925)
+rotation = 0.174533
+RequiredStrength = 1e+06
+DamageDealt = 10000.0
+
+[node name="RockSmallSlope" parent="." instance=ExtResource("7_cg3un")]
+polygon = PackedVector2Array(391, 191, 335, 372, 543, 424, 546, 205)
