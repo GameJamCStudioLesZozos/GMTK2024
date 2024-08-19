@@ -106,7 +106,7 @@ public partial class MovementComponent : Node
 			scalingComponent.SetRadiusRatio(0.5f);
 			var scene = GD.Load<PackedScene>(SplitInstance.ResourcePath);
 			var instance = scene.Instantiate<Node2D>();
-			instance.Position = GetParent<Node2D>().Position - this.GetParent<RigidBody2D>().LinearVelocity*0.5f;
+			instance.Position = GetParent<Node2D>().Position - 2.1f*scalingComponent.Radius*this.GetParent<RigidBody2D>().LinearVelocity.Normalized();
 			var newScalingComponent = instance.GetNode<ScalingComponent>("ScalingComponent");
 			newScalingComponent.SetRadius(scalingComponent.Radius);
 			AddChild(instance);

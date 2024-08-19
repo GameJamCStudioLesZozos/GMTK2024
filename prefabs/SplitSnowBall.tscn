@@ -9,8 +9,6 @@
 [ext_resource type="Script" path="res://scripts/BallSnowCollision.cs" id="7_fswse"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnx3d"]
-friction = 1000.0
-rough = true
 bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
@@ -47,7 +45,8 @@ script = ExtResource("6_1xs0x")
 
 [node name="SnowCollisionComponent" type="Node" parent="."]
 script = ExtResource("7_fswse")
+SizeScaling = 0.01
 
 [connection signal="body_entered" from="." to="SnowCollisionComponent" method="_OnBodyEntered"]
 [connection signal="body_exited" from="." to="SnowCollisionComponent" method="_OnBodyExited"]
-[connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]
+[connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="AddRadiusRatio"]

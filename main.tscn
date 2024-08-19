@@ -36,6 +36,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 2000, 6000)
 
 [node name="SnowBall" parent="." instance=ExtResource("1_ejra5")]
+position = Vector2(56, 294)
 
 [node name="Polygon2D" parent="." instance=ExtResource("2_gp7xk")]
 position = Vector2(0, 300)

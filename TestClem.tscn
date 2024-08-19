@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/SnowBall.tscn" id="4_ikkh3"]
 [ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Snow.tscn" id="5_pfbrs"]
 [ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Obstacles/Tree.tscn" id="6_qous7"]
-[ext_resource type="PackedScene" uid="uid://b56wtlteo7v7a" path="res://prefabs/BuildingBlocks/Rock/RockSmallSlope.tscn" id="7_cg3un"]
+[ext_resource type="PackedScene" uid="uid://c6ine032sceuj" path="res://prefabs/BuildingBlocks/Rock/Slopes/RockSmallSlope.tscn" id="7_cg3un"]
 
 [sub_resource type="Gradient" id="Gradient_57df1"]
 colors = PackedColorArray(0.278973, 0.544391, 0.884461, 1, 0.7, 0.91, 1, 1)

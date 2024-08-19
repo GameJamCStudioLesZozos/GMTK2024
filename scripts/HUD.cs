@@ -40,11 +40,11 @@ public partial class HUD : Control
 
 	void UpdateUI()
 	{
-		float speedValue = snowball.LinearVelocity.Length();
-		speed.Text = "Speed: " + speedValue.ToString("0");
+		float speedValue = snowball.LinearVelocity.Length()/100*3.6f;
+		speed.Text = $"Speed: {speedValue:0} km/h";
 
 		float scaleValue = scalingComponent.Radius;
-		size.Text = "Size: " + (scaleValue * 2f).ToString("0.0");
+		size.Text = "Size: " + (scaleValue * 2f).ToString("0.0") + " m";
 		time.Text = "Time: " + GetTime();
 
 		updateUITimer.Start();
@@ -54,7 +54,7 @@ public partial class HUD : Control
 	private string GetTime()
 	{
 		TimeSpan timeSpan = main.GetTime();
-		return string.Format("{1:s\\.fff}", "s\\.fff", timeSpan);
+		return string.Format("{0:m\\:ss\\.fff}", timeSpan);
 	}
 
 

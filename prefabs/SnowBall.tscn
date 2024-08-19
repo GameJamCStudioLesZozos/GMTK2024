@@ -15,8 +15,6 @@
 [ext_resource type="Script" path="res://scripts/AnimationComponent.cs" id="11_8aoec"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnx3d"]
-friction = 1000.0
-rough = true
 bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
@@ -135,10 +133,11 @@ libraries = {
 
 [node name="ScalingComponent" type="Node" parent="."]
 script = ExtResource("1_6sdjc")
+Radius = 0.1
 
 [node name="SnowCollisionComponent" type="Node" parent="."]
 script = ExtResource("3_0uxef")
-SizeScaling = 0.05
+SizeScaling = 0.01
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("5_mjtwt")
