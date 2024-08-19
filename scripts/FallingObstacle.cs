@@ -4,7 +4,7 @@ using System;
 public partial class FallingObstacle : Obstacle
 {
 	[Export]
-	public double FallingSpeed = 20;
+	public float FallingSpeed = 200;
 
 	[Export]
 	public Area2D FallingTriggerArea;
@@ -23,7 +23,7 @@ public partial class FallingObstacle : Obstacle
 	public override void _Process(double delta)
 	{
         if (isFalling)
-			Position += new Vector2(0, 4);
+			Position += new Vector2(0, (float)(FallingSpeed * delta));
 	}
 
     public override void _OnBodyEntered(Node2D node)
