@@ -18,6 +18,7 @@ public partial class MovementComponent : Node
 	[Export] public float MinSizeDashThreshold { get; set; } = 2f;
 	[Export] public float DashSizeLostFactor { get; set; } = 0.25f;
 	[Export] public double DashCooldown { get; set; } = 2;
+	[Export] public double SplitCooldown { get; set; } = 2;
 	[Export] public int NbFramesBufferJump { get; set; } = 6;
 	[Export] public int NbFramesBufferDash { get; set; } = 3;
 
@@ -35,7 +36,9 @@ public partial class MovementComponent : Node
 	private ScalingComponent scalingComponent = null;
 	private bool isGravityMultiplierOn = false;
 	private Timer dashCooldownTimer = new();
+	private Timer splitCooldownTimer = new();
 	private bool isOnDashCooldown = false;
+	private bool isOnSplitCooldown = false;
 	private int jumpBufferFramesLeft = 0;
 	private int dashBufferFramesLeft = 0;
 
@@ -55,7 +58,9 @@ public partial class MovementComponent : Node
 	{
 		scalingComponent = (ScalingComponent)GetParent().GetChildren().First(node => node is ScalingComponent);
 		AddChild(dashCooldownTimer);
+		AddChild(splitCooldownTimer);
 		dashCooldownTimer.Timeout += () => isOnDashCooldown = false;
+		splitCooldownTimer.Timeout += () => isOnSplitCooldown = false;
 	}
 
 
@@ -97,15 +102,17 @@ public partial class MovementComponent : Node
 
 	private void checkSplit()
 	{
-		if (Input.IsActionJustPressed("split"))
+		if (Input.IsActionJustPressed("split") && !isOnSplitCooldown)
 		{
 			scalingComponent.ScaleSize(-scalingComponent.Size / 2);
 			var scene = GD.Load<PackedScene>(SplitInstance.ResourcePath);
 			var instance = scene.Instantiate<Node2D>();
-			instance.Position = GetParent<Node2D>().Position;
+			instance.Position = GetParent<Node2D>().Position - this.GetParent<RigidBody2D>().LinearVelocity*0.5f;
 			var newScalingComponent = instance.GetNode<ScalingComponent>("ScalingComponent");
 			newScalingComponent.ScaleSize(scalingComponent.Size - newScalingComponent.Size);
 			AddChild(instance);
+			isOnSplitCooldown = true;
+			splitCooldownTimer.Start(SplitCooldown);
 		}
 	}
 
