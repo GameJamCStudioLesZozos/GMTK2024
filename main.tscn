@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Main.cs" id="1_a3ook"]
 [ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/SnowBall.tscn" id="1_ejra5"]
 [ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Snow.tscn" id="2_gp7xk"]
-[ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Tree.tscn" id="3_g8ss2"]
+[ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Obstacles/Tree.tscn" id="3_g8ss2"]
 [ext_resource type="PackedScene" uid="uid://dc2j5qdj5g4mp" path="res://prefabs/HUD.tscn" id="3_stqdm"]
 [ext_resource type="PackedScene" uid="uid://bwexcskfbudn" path="res://prefabs/DeathscreenUI.tscn" id="4_kqmg8"]
 

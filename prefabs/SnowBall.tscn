@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://8ifnct3byuxj"]
 
 [ext_resource type="Texture2D" uid="uid://dtjolwwa8wa8r" path="res://Sprites/snowball_happy.png" id="1_0x708"]
-[ext_resource type="Script" path="res://prefabs/SnowBallPhysics.cs" id="1_4pn1b"]
+[ext_resource type="Script" path="res://scripts/SnowBallPhysics.cs" id="1_4pn1b"]
 [ext_resource type="Script" path="res://scripts/ScalingComponent.cs" id="1_6sdjc"]
 [ext_resource type="Script" path="res://scripts/CharacterSpriteController.cs" id="1_rg8wy"]
 [ext_resource type="Script" path="res://scripts/BallSnowCollision.cs" id="3_0uxef"]

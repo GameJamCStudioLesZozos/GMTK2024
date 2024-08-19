@@ -1,20 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://yor84o485ngm"]
+[gd_scene load_steps=2 format=3 uid="uid://yor84o485ngm"]
 
 [ext_resource type="Script" path="res://scripts/CollisionShape2dAutoFill.cs" id="1_35b8x"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_on0mo"]
-friction = 1000.0
-rough = true
-
-[node name="Rock" type="StaticBody2D" groups=["Ground"]]
+[node name="Rock" type="Polygon2D" groups=["Ground"]]
 physics_interpolation_mode = 1
-collision_layer = 2
-physics_material_override = SubResource("PhysicsMaterial_on0mo")
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-script = ExtResource("1_35b8x")
-
-[node name="GroundPolygon" type="Polygon2D" parent="." groups=["Ground"]]
-unique_name_in_owner = true
 color = Color(0.505344, 0.505344, 0.505344, 1)
 polygon = PackedVector2Array(0, 0, 1150, 200, 1150, 350, 0, 350)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Ground"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+script = ExtResource("1_35b8x")

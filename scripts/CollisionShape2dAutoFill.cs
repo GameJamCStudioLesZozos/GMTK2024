@@ -7,6 +7,9 @@ public partial class CollisionShape2dAutoFill : CollisionPolygon2D
 	public override void _Ready()
 	{
         Polygon2D polygon = GetNode<Polygon2D>("%GroundPolygon");
+        if (polygon is null)
+			polygon = GetParent().GetParent<Polygon2D>();
+
 		if (polygon != null)
 			Polygon = polygon.Polygon;
 	}
