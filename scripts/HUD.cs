@@ -26,13 +26,13 @@ public partial class HUD : Control
 		size = GetNode<Label>("ReferenceRect/Size");
 		time = GetNode<Label>("ReferenceRect/Time");
 
-        updateUITimer = new Timer
-        {
-            WaitTime = updateUICooldown
-        };
+		updateUITimer = new Timer
+		{
+			WaitTime = updateUICooldown
+		};
 		AddChild(updateUITimer);
 
-        updateUITimer.Timeout += UpdateUI;
+		updateUITimer.Timeout += UpdateUI;
 		updateUITimer.Start();
 
 		SignalBus.Instance.Connect(SignalBus.SignalName.PlayerDied, Callable.From(OnPlayerDead));
@@ -43,8 +43,8 @@ public partial class HUD : Control
 		float speedValue = snowball.LinearVelocity.Length();
 		speed.Text = "Speed: " + speedValue.ToString("0");
 
-		float scaleValue = scalingComponent.Size;
-		size.Text = "Size: " + scaleValue.ToString("0.0");
+		float scaleValue = scalingComponent.Radius;
+		size.Text = "Size: " + (scaleValue * 2f).ToString("0.0");
 		time.Text = "Time: " + GetTime();
 
 		updateUITimer.Start();

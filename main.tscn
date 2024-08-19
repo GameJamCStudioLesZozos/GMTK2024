@@ -42,10 +42,9 @@ position = Vector2(0, 300)
 scale = Vector2(5.215, 5.215)
 
 [node name="Tree" parent="." instance=ExtResource("3_g8ss2")]
-position = Vector2(3573, 925)
+position = Vector2(3631, 925)
 rotation = 0.174533
-RequiredStrength = 1e+06
-DamageDealt = 10000.0
+DamageDealt = 15.0
 
 [node name="Treeeees" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)

@@ -28,7 +28,6 @@ public partial class MovementComponent : Node
 	[Signal] public delegate void ApplyTorqueEventHandler(float torque);
 	[Signal] public delegate void ApplyDashRotationEventHandler(float dashRotation);
 	[Signal] public delegate void ApplyAerialDashImpulseEventHandler(Vector2 aerialDashImpulse);
-	[Signal] public delegate void LoseSizeEventHandler(float amount);
 	[Signal] public delegate void SetBouncinessEventHandler(bool on);
 
 	// fields
@@ -43,13 +42,13 @@ public partial class MovementComponent : Node
 	private int dashBufferFramesLeft = 0;
 
 	// properties
-	private Vector2 ScaledJumpVector => new(0f, -JumpImpulse * (float)Math.Sqrt(scalingComponent.Size));
-	private float ScaledTorque => Torque * scalingComponent.Size;
-	private float ScaledGroundDashRotation => GroundDashRotation * scalingComponent.Size * scalingComponent.Size;
-	private float ScaledAirDashRotation => AirDashRotation * scalingComponent.Size * scalingComponent.Size;
+	private Vector2 ScaledJumpVector => new(0f, -JumpImpulse * (float)Math.Sqrt(scalingComponent.Radius));
+	private float ScaledTorque => Torque * scalingComponent.Radius;
+	private float ScaledGroundDashRotation => GroundDashRotation * scalingComponent.Radius * scalingComponent.Radius;
+	private float ScaledAirDashRotation => AirDashRotation * scalingComponent.Radius * scalingComponent.Radius;
 	private float CurrentScaledDashRotation => IsOnFloor ? ScaledGroundDashRotation : ScaledAirDashRotation;
-	private float ScaledAerialDashHorizontalSpeed => AerialDashHorizontalSpeed * (float)Math.Sqrt(scalingComponent.Size);
-	private float ScaledAerialDashVerticalSpeed => -AerialDashVerticalSpeed * (float)Math.Sqrt(scalingComponent.Size);
+	private float ScaledAerialDashHorizontalSpeed => AerialDashHorizontalSpeed * (float)Math.Sqrt(scalingComponent.Radius);
+	private float ScaledAerialDashVerticalSpeed => -AerialDashVerticalSpeed * (float)Math.Sqrt(scalingComponent.Radius);
 	private bool IsOnFloor => groundCollisions.Count != 0;
 	private bool IsJumpRequested => jumpBufferFramesLeft >= 0;
 	private bool IsDashRequested => dashBufferFramesLeft >= 0;
@@ -104,12 +103,12 @@ public partial class MovementComponent : Node
 	{
 		if (Input.IsActionJustPressed("split") && !isOnSplitCooldown)
 		{
-			scalingComponent.ScaleSize(-scalingComponent.Size / 2);
+			scalingComponent.SetRadiusRatio(0.5f);
 			var scene = GD.Load<PackedScene>(SplitInstance.ResourcePath);
 			var instance = scene.Instantiate<Node2D>();
 			instance.Position = GetParent<Node2D>().Position - this.GetParent<RigidBody2D>().LinearVelocity*0.5f;
 			var newScalingComponent = instance.GetNode<ScalingComponent>("ScalingComponent");
-			newScalingComponent.ScaleSize(scalingComponent.Size - newScalingComponent.Size);
+			newScalingComponent.SetRadius(scalingComponent.Radius);
 			AddChild(instance);
 			isOnSplitCooldown = true;
 			splitCooldownTimer.Start(SplitCooldown);
@@ -139,7 +138,7 @@ public partial class MovementComponent : Node
 			}
 		}
 
-		if (isOnDashCooldown || scalingComponent.Size <= MinSizeDashThreshold)
+		if (isOnDashCooldown || scalingComponent.Radius <= MinSizeDashThreshold)
 			return;
 
 		if (!IsDashRequested && Input.IsActionJustPressed("dash"))
@@ -163,7 +162,7 @@ public partial class MovementComponent : Node
 		dashBufferFramesLeft = 0;
 		isOnDashCooldown = true;
 		dashCooldownTimer.Start(DashCooldown);
-		EmitSignal(SignalName.LoseSize, -DashSizeLostFactor * scalingComponent.Size);
+		scalingComponent.AddRadiusRatio(-DashSizeLostFactor);
 	}
 
 	private void checkForceGravity()

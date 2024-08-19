@@ -138,6 +138,7 @@ script = ExtResource("1_6sdjc")
 
 [node name="SnowCollisionComponent" type="Node" parent="."]
 script = ExtResource("3_0uxef")
+SizeScaling = 0.05
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("5_mjtwt")
@@ -162,11 +163,10 @@ CameraBaseZoom = 3.0
 [connection signal="body_exited" from="." to="SnowCollisionComponent" method="_OnBodyExited"]
 [connection signal="body_exited" from="." to="MovementComponent" method="_OnBodyExited"]
 [connection signal="Scaled" from="ScalingComponent" to="Camera" method="HandleNewScaling"]
-[connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="ScaleSize"]
+[connection signal="ScaleRigidBody" from="SnowCollisionComponent" to="ScalingComponent" method="AddRadiusRatio"]
 [connection signal="ApplyAerialDashImpulse" from="MovementComponent" to="." method="apply_central_impulse"]
 [connection signal="ApplyDashRotation" from="MovementComponent" to="." method="apply_torque_impulse"]
 [connection signal="ApplyTorque" from="MovementComponent" to="." method="apply_torque"]
 [connection signal="ForceGravity" from="MovementComponent" to="." method="set_gravity_scale"]
 [connection signal="Jumped" from="MovementComponent" to="." method="apply_central_impulse"]
-[connection signal="LoseSize" from="MovementComponent" to="ScalingComponent" method="ScaleSize"]
 [connection signal="SetBounciness" from="MovementComponent" to="." method="SetBounciness"]
