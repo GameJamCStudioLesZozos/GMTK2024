@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://scripts/SignalBus.cs"
 
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=600
+window/size/resizable=false
+
 [dotnet]
 
 project/assembly_name="GMTK2024"

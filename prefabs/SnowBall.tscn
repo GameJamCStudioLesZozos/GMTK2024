@@ -147,7 +147,7 @@ GroundDashRotation = 3000.0
 AirDashRotation = 500.0
 AerialDashHorizontalSpeed = 500.0
 AerialDashVerticalSpeed = 100.0
-MinSizeDashThreshold = 3.0
+MinSizeDashThreshold = 0.1
 
 [node name="AnimationComponent" type="Node" parent="."]
 script = ExtResource("11_8aoec")

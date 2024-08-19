@@ -8,6 +8,8 @@ public partial class ScalingComponent : Node
 	[Export] public float RadiusStrengthFactor = 1;
 	[Export] public float SpeedStrengthFactor = 1;
 	[Export] public float InvincibilityDuration = 1f;
+	[Export] public float MinRadius = 0.1f;
+	[Export] public float MaxRadius = 100f;
 
 	[Signal]
 	public delegate void ScaledEventHandler(float newRadius);
@@ -72,7 +74,7 @@ public partial class ScalingComponent : Node
 		if (IsGameOver)
 			return;
 
-		Radius = radius;
+		Radius = Math.Clamp(radius, -MaxRadius, MaxRadius);
 		if (IsGameOver)
 		{
 			Radius = 0;

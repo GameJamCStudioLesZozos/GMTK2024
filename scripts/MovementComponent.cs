@@ -15,7 +15,7 @@ public partial class MovementComponent : Node
 	[Export] public float AirDashRotation { get; set; } = 30f;
 	[Export] public float AerialDashHorizontalSpeed { get; set; } = 30f;
 	[Export] public float AerialDashVerticalSpeed { get; set; } = 10f;
-	[Export] public float MinSizeDashThreshold { get; set; } = 2f;
+	[Export] public float MinSizeDashThreshold { get; set; } = 0.1f;
 	[Export] public float DashSizeLostFactor { get; set; } = 0.25f;
 	[Export] public double DashCooldown { get; set; } = 2;
 	[Export] public double SplitCooldown { get; set; } = 2;
@@ -101,7 +101,7 @@ public partial class MovementComponent : Node
 
 	private void checkSplit()
 	{
-		if (Input.IsActionJustPressed("split") && !isOnSplitCooldown)
+		if (Input.IsActionJustPressed("split") && !isOnSplitCooldown && scalingComponent.Radius >= 2*scalingComponent.MinRadius)
 		{
 			scalingComponent.SetRadiusRatio(0.5f);
 			var scene = GD.Load<PackedScene>(SplitInstance.ResourcePath);
