@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=3 uid="uid://de5hvrf776p57"]
+
+[ext_resource type="Script" path="res://scripts/EndLevelScreenUi.cs" id="1_1l3tl"]
+
+[node name="EndLevelScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1l3tl")
+
+[node name="EndLevelScreen" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.176471)
+
+[node name="Retry" type="Button" parent="EndLevelScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -15.5
+offset_right = 25.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="Time" type="Label" parent="EndLevelScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = 35.0
+offset_right = 59.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Win !"
+horizontal_alignment = 1
+
+[node name="Time2" type="Label" parent="EndLevelScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = 63.0
+offset_right = 57.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your time was :"
+
+[node name="TimeValue" type="Label" parent="EndLevelScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = 93.0
+offset_right = 60.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="EndLevelScreen/Retry" to="." method="OnRetryPressed"]

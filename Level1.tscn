@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cheh4jkh0i7vs"]
+[gd_scene load_steps=22 format=3 uid="uid://cheh4jkh0i7vs"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_uvc0n"]
 [ext_resource type="PackedScene" uid="uid://bwexcskfbudn" path="res://prefabs/DeathscreenUI.tscn" id="2_6v6yh"]
+[ext_resource type="PackedScene" uid="uid://de5hvrf776p57" path="res://prefabs/endLevelScreen.tscn" id="2_jkshv"]
 [ext_resource type="PackedScene" uid="uid://dc2j5qdj5g4mp" path="res://prefabs/HUD.tscn" id="3_n5rce"]
 [ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/SnowBall.tscn" id="4_twwex"]
 [ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Snow.tscn" id="5_2bu1o"]
@@ -16,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://de3762i6yk037" path="res://prefabs/Deco/DecorativeTent.tscn" id="14_rx080"]
 [ext_resource type="PackedScene" uid="uid://dm813r5mfh070" path="res://prefabs/Obstacles/Bush5.tscn" id="15_f6t2u"]
 [ext_resource type="PackedScene" uid="uid://cngaar8apcseo" path="res://prefabs/Obstacles/Rock5.tscn" id="16_rymcp"]
-[ext_resource type="PackedScene" path="res://prefabs/Obstacles/Stalactite.tscn" id="17_2t0hg"]
+[ext_resource type="PackedScene" uid="uid://bd0iscet5vxmg" path="res://prefabs/Obstacles/Stalactite.tscn" id="17_2t0hg"]
 [ext_resource type="PackedScene" uid="uid://c8ha1xj86ku6m" path="res://prefabs/Obstacles/Tent.tscn" id="18_0e704"]
 
 [sub_resource type="Gradient" id="Gradient_57df1"]
@@ -28,6 +29,11 @@ width = 1024
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uvc0n")
+
+[node name="WinScreenLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="EndLevelScreen" parent="WinScreenLayer" instance=ExtResource("2_jkshv")]
 
 [node name="DeathscreenLayer" type="CanvasLayer" parent="."]
 layer = 2
