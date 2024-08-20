@@ -36,6 +36,7 @@ public partial class HUD : Control
 		updateUITimer.Start();
 
 		SignalBus.Instance.Connect(SignalBus.SignalName.PlayerDied, Callable.From(OnPlayerDead));
+		SignalBus.Instance.PlayerFinishedLevel += OnPlayerDead;
 	}
 
 	void UpdateUI()
