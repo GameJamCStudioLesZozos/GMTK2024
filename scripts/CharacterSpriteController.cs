@@ -10,9 +10,9 @@ public partial class CharacterSpriteController : Node2D
 	[Export] public Texture2D concerned;
 	[Export] public Texture2D ill;
 
-	[Export] public float surprisedTreshold = 10;
-	[Export] public float concernedTreshold = 20;
-	[Export] public float illTreshold = 30;
+	[Export] public float surprisedTreshold ;
+	[Export] public float concernedTreshold;
+	[Export] public float illTreshold;
 	
 	private int status = 0;
 

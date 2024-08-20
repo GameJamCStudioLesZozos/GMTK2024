@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/AnimationComponent.cs" id="11_8aoec"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnx3d"]
+friction = 10.0
 bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
@@ -114,9 +115,9 @@ happy = ExtResource("1_0x708")
 surprised = ExtResource("3_72sdh")
 concerned = ExtResource("4_23svx")
 ill = ExtResource("5_lxmun")
-surprisedTreshold = 1.0
-concernedTreshold = 2.0
-illTreshold = 3.0
+surprisedTreshold = 15.0
+concernedTreshold = 30.0
+illTreshold = 45.0
 
 [node name="Node" type="Sprite2D" parent="Character"]
 physics_interpolation_mode = 1
@@ -147,7 +148,6 @@ GroundDashRotation = 3000.0
 AirDashRotation = 500.0
 AerialDashHorizontalSpeed = 500.0
 AerialDashVerticalSpeed = 100.0
-MinSizeDashThreshold = 0.1
 
 [node name="AnimationComponent" type="Node" parent="."]
 script = ExtResource("11_8aoec")

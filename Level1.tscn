@@ -1,0 +1,206 @@
+[gd_scene load_steps=21 format=3 uid="uid://cheh4jkh0i7vs"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_uvc0n"]
+[ext_resource type="PackedScene" uid="uid://bwexcskfbudn" path="res://prefabs/DeathscreenUI.tscn" id="2_6v6yh"]
+[ext_resource type="PackedScene" uid="uid://dc2j5qdj5g4mp" path="res://prefabs/HUD.tscn" id="3_n5rce"]
+[ext_resource type="PackedScene" uid="uid://8ifnct3byuxj" path="res://prefabs/SnowBall.tscn" id="4_twwex"]
+[ext_resource type="PackedScene" uid="uid://wfglofvnfn8q" path="res://prefabs/Snow.tscn" id="5_2bu1o"]
+[ext_resource type="PackedScene" uid="uid://c8i2t0awk71p7" path="res://prefabs/Obstacles/Tree.tscn" id="6_1d7ho"]
+[ext_resource type="PackedScene" uid="uid://ggb3xlc6tqqt" path="res://prefabs/Deco/DecorativeTree.tscn" id="7_1yfmv"]
+[ext_resource type="PackedScene" uid="uid://bfl57lfkprc3l" path="res://prefabs/Obstacles/Bush10.tscn" id="8_eaoy1"]
+[ext_resource type="PackedScene" uid="uid://yor84o485ngm" path="res://prefabs/RockyGround.tscn" id="9_fq217"]
+[ext_resource type="PackedScene" uid="uid://tdl0m2ty0e6h" path="res://prefabs/End.tscn" id="10_26gpy"]
+[ext_resource type="PackedScene" uid="uid://byu4h6of45j47" path="res://prefabs/Deco/DecorativeBush1.tscn" id="11_8qsap"]
+[ext_resource type="PackedScene" uid="uid://c1rqatygfeqpy" path="res://prefabs/Deco/DecorativeBush6.tscn" id="12_j5pcx"]
+[ext_resource type="PackedScene" uid="uid://c5lt7elks8nqy" path="res://prefabs/Deco/DecorativeRock3.tscn" id="13_6sm8o"]
+[ext_resource type="PackedScene" uid="uid://de3762i6yk037" path="res://prefabs/Deco/DecorativeTent.tscn" id="14_rx080"]
+[ext_resource type="PackedScene" uid="uid://dm813r5mfh070" path="res://prefabs/Obstacles/Bush5.tscn" id="15_f6t2u"]
+[ext_resource type="PackedScene" uid="uid://cngaar8apcseo" path="res://prefabs/Obstacles/Rock5.tscn" id="16_rymcp"]
+[ext_resource type="PackedScene" path="res://prefabs/Obstacles/Stalactite.tscn" id="17_2t0hg"]
+[ext_resource type="PackedScene" uid="uid://c8ha1xj86ku6m" path="res://prefabs/Obstacles/Tent.tscn" id="18_0e704"]
+
+[sub_resource type="Gradient" id="Gradient_57df1"]
+colors = PackedColorArray(0.170916, 0.426477, 0.744366, 1, 0.7, 0.91, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d8tl4"]
+gradient = SubResource("Gradient_57df1")
+width = 1024
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_uvc0n")
+
+[node name="DeathscreenLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DeathscreenUI" parent="DeathscreenLayer" instance=ExtResource("2_6v6yh")]
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUDLayer" instance=ExtResource("3_n5rce")]
+offset_top = -3.0
+offset_bottom = -3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9745, 3335)
+rotation = 1.5708
+scale = Vector2(4.12166, 3.44712)
+texture = SubResource("GradientTexture1D_d8tl4")
+region_enabled = true
+region_rect = Rect2(0, 0, 2000, 6000)
+
+[node name="SnowBall" parent="." instance=ExtResource("4_twwex")]
+position = Vector2(47, 270)
+
+[node name="Polygon2D" parent="." instance=ExtResource("5_2bu1o")]
+position = Vector2(0, 300)
+scale = Vector2(5.215, 5.215)
+polygon = PackedVector2Array(0, 0, 68.8399, 1.34229, 105.657, 3.83509, 148.035, 9.97124, 185.618, 21.2848, 223.544, 47.1181, 225.12, 48.8974, 226.079, 51.1985, 227.804, 53.116, 229.914, 54.8418, 231.831, 55.9923, 233.365, 56.7593, 234.708, 57.1429, 237.392, 57.3346, 239.501, 57.1429, 241.611, 56.7593, 243.145, 55.9923, 244.871, 54.8418, 247.939, 52.349, 250.623, 51.1985, 252.541, 50.6232, 254.458, 50.4314, 256.759, 50.4314, 258.677, 50.815, 262.128, 52.9243, 277.661, 62.3202, 313.327, 74.976, 358.965, 100.479, 387.152, 137.872, 415.149, 171.237, 467.498, 184.66, 492.426, 203.643, 526.174, 211.697, 562.224, 195.59, 590.604, 169.128, 608.054, 158.581, 628.955, 149.185, 650.815, 145.158, 667.689, 143.816, 692.042, 144.199, 705.849, 146.117, 721.189, 152.061, 738.639, 164.142, 772.004, 200.767, 805.369, 231.639, 834.708, 260.594, 853.116, 287.248, 855.034, 292.809, 856.568, 295.877, 860.403, 299.329, 866.539, 302.205, 873.442, 304.314, 882.071, 304.314, 888.591, 302.972, 893.193, 302.205, 915.628, 291.659, 861.745, 449.473, 1048.32, 520.038, 1061.17, 526.174, 1066.92, 529.051, 1074.02, 530.777, 1080.54, 530.393, 1086.29, 527.9, 1092.81, 524.449, 1098.56, 518.696, 1176.41, 495.494, 1228.95, 525.791, 1262.7, 581.975, 1343.24, 641.419, 1446.14, 670.432, 1497.03, 712.752, 1554.94, 743.049, 1629.91, 751.486, 1714.29, 726.366, 1809.2, 773.346, 1860.79, 860.403, 1911.6, 945.542, 1992.91, 998.466, 2031.45, 1098.18, 2084.56, 1121.76, 2119.65, 1114.67, 2166.44, 1110.83, 2235.47, 1120.04, 2292.23, 1120.42, 2436.43, 1142.47, 2457.72, 1140.17, 2844.1, 1203.45, 2978.14, 1165.1, 3118.7, 1161.84, 3219.56, 1122.15, 3323.49, 1086.29, 3394.25, 1137.49, 3428.38, 1188.69, 3500.67, 1247.17, 3573.92, 1251.39, 3674.59, 1292.81, 3705.46, 1295.88, 3715.44, 1293.38, 3722.53, 1296.26, 3730.97, 1299.9, 3742.09, 1308.53, 3759.35, 1312.37, 3765.1, 1313.14, 3774.69, 1312.37, 3840.84, 1271.52, 3865.96, 1204.79, 3971.04, 1382.36, 4067.5, 1723.11, -163.567, 1737.1)
+
+[node name="Tree" parent="." instance=ExtResource("6_1d7ho")]
+position = Vector2(1709, 749)
+rotation = 0.455927
+DamageDealt = 15.0
+
+[node name="Tree2" parent="." instance=ExtResource("6_1d7ho")]
+position = Vector2(6126, 2904)
+rotation = 0.00102872
+RequiredStrength = 500.0
+DamageDealt = 50.0
+
+[node name="Treeeees" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="DecorativeTree" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(388, 1194)
+
+[node name="DecorativeTree2" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(964, 1004)
+
+[node name="DecorativeTree3" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(1763.95, 1502.25)
+
+[node name="DecorativeTree4" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(2288.36, 1751.96)
+
+[node name="DecorativeTree5" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(2787.79, 1876.82)
+
+[node name="DecorativeTree19" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(488.267, 1830.1)
+
+[node name="DecorativeTree20" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(1339.3, 2009.89)
+
+[node name="DecorativeTree21" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(859.847, 2489.35)
+
+[node name="DecorativeTree22" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(476.28, 3040.73)
+
+[node name="DecorativeTree23" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(859.847, 3891.77)
+
+[node name="DecorativeTree24" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(1435.2, 3100.66)
+
+[node name="DecorativeTree25" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(1842.74, 2369.49)
+
+[node name="DecorativeTree26" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(1734.86, 3699.98)
+
+[node name="DecorativeTree27" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(2358.15, 2777.03)
+
+[node name="DecorativeTree28" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(2669.8, 3568.13)
+
+[node name="DecorativeTree29" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(3245.15, 2681.13)
+
+[node name="DecorativeTree30" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(3628.72, 3556.15)
+
+[node name="DecorativeTree31" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(4407.84, 2824.97)
+
+[node name="DecorativeTree32" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(4959.21, 3532.17)
+
+[node name="DecorativeTree34" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(5654, 3166)
+
+[node name="DecorativeTree35" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(7740, 2772)
+
+[node name="DecorativeTree37" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(5486.62, 3987.66)
+
+[node name="DecorativeTree38" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(4252.01, 3927.73)
+
+[node name="DecorativeTree39" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(2130.41, 4047.59)
+
+[node name="DecorativeTree41" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(8492, 3508)
+
+[node name="DecorativeTree46" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(6757.18, 3927.73)
+
+[node name="DecorativeTree47" parent="Treeeees" instance=ExtResource("7_1yfmv")]
+position = Vector2(3149.26, 4047.59)
+
+[node name="Bush10" parent="." instance=ExtResource("8_eaoy1")]
+position = Vector2(6712, 3400)
+rotation = 0.56321
+
+[node name="Rock" parent="." instance=ExtResource("9_fq217")]
+position = Vector2(11696, 5180)
+polygon = PackedVector2Array(-1093, 388, -727.983, 412.782, 2543, 754, 1403, 909, 1225, 1038, 1250, 885, 1251, 878, 1244, 872, 1236, 870, 1227, 876, 1112, 996, 1114, 870, 1108, 855, 1093, 852, 1080, 861, 993, 988, 865, 864, 703, 949, 625, 870, -38, 904, -227, 819, -414, 774, -813, 652)
+
+[node name="Snow" parent="." instance=ExtResource("5_2bu1o")]
+position = Vector2(10949, 5238)
+polygon = PackedVector2Array(142, 287, 201, 332, 286, 337, 723, 295, 846, 338, 959, 344, 1044, 311, 1094, 281, 1163, 226, 1427, 336, 1691, 336, 1750, 350, 1818, 348, 1866, 340, 1901, 328, 1925, 312, 1940, 291, 1966, 265, 2005, 253, 2184, 387, 2273, 399, 2368, 383, 2463, 359, 2516, 325, 2519, 411, 2611, 475, 2751, 550, 2880, 613, 3032, 660, 3322, 694, 3252, 725, 3134, 811, 3021, 715, 1109, 537, -343, 332, -333, 336, -330, 342, -333, 352, -358, 344, -375, 343, -377, 327, -354, 308, -286, 302, -54, 311, 82, 268)
+
+[node name="Rock2" parent="." instance=ExtResource("9_fq217")]
+position = Vector2(20110, 6205)
+polygon = PackedVector2Array(-67, -4909, 1817, -5218, 3865, 3293, 729, 2149, -30, 653)
+
+[node name="Rock3" parent="." instance=ExtResource("9_fq217")]
+position = Vector2(-1215, 2209)
+polygon = PackedVector2Array(-13, -3217, 1267, -3040, 1225, -1919, 855, 4962, -729, 5362)
+
+[node name="Area2D" parent="." instance=ExtResource("10_26gpy")]
+position = Vector2(19186, 7046)
+rotation = 0.0698977
+
+[node name="DecorativeBush1" parent="." instance=ExtResource("11_8qsap")]
+position = Vector2(11566, 5621)
+
+[node name="DecorativeBush6" parent="." instance=ExtResource("12_j5pcx")]
+position = Vector2(3491, 1142)
+
+[node name="DecorativeRock3" parent="." instance=ExtResource("13_6sm8o")]
+position = Vector2(5991, 3039)
+scale = Vector2(0.479381, 0.429577)
+
+[node name="DecorativeTent" parent="." instance=ExtResource("14_rx080")]
+position = Vector2(19925, 7155)
+
+[node name="Bush5" parent="." instance=ExtResource("15_f6t2u")]
+position = Vector2(12500, 5549)
+
+[node name="Rock5" parent="." instance=ExtResource("16_rymcp")]
+position = Vector2(13514, 5672)
+rotation = 0.624263
+
+[node name="FalllingStalactite" parent="." instance=ExtResource("17_2t0hg")]
+position = Vector2(13537, 5989)
+scale = Vector2(0.7, 0.7)
+DestroyedOnColison = true
+
+[node name="Tent" parent="." instance=ExtResource("18_0e704")]
+position = Vector2(17011, 6067)
+RequiredStrength = 10.0
+DamageDealt = 20.0

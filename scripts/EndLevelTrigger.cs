@@ -8,6 +8,10 @@ public partial class EndLevelTrigger : Area2D
         if (node.IsInGroup("Player"))
         {
             node.GetNode("Camera").Reparent(this);
+            node.GetNode("MovementComponent").QueueFree();
+            node.GetNode("ScalingComponent").QueueFree();
+            node.GetNode("SnowCollisionComponent").QueueFree();
+            
         }
     }
 }

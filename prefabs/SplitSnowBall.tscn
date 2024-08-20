@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/BallSnowCollision.cs" id="7_fswse"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnx3d"]
-bounce = 0.2
+bounce = 0.1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_heevr"]
 
