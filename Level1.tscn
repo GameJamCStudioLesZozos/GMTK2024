@@ -64,8 +64,8 @@ DamageDealt = 15.0
 [node name="Tree2" parent="." instance=ExtResource("6_1d7ho")]
 position = Vector2(6126, 2904)
 rotation = 0.00102872
-RequiredStrength = 500.0
-DamageDealt = 50.0
+RequiredStrength = 200.0
+DamageDealt = 20.0
 
 [node name="Treeeees" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
