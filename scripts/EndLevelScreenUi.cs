@@ -3,6 +3,9 @@ using System;
 
 public partial class EndLevelScreenUi : Control
 {
+    [Export]
+    public Control DeathScreen { get; set; }
+
     private ColorRect EndLevelScreen;
     private Main main;
 
@@ -29,6 +32,8 @@ public partial class EndLevelScreenUi : Control
         string strTime = GetTime();
         time.Text = strTime;
 
+        if(DeathScreen != null)
+            DeathScreen.QueueFree();
         EndLevelScreen.Show();
     }
 
